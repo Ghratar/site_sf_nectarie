@@ -2,23 +2,24 @@
    SMOOTH SCROLL REVEAL
 ---------------------------- */
 
-const reveals = document.querySelectorAll('.reveal');
+const reveals = document.querySelectorAll(".reveal");
 
-function handleScroll() {
-  for (let i = 0; i < reveals.length; i++) {
-    const windowHeight = window.innerHeight;
-    const elementTop = reveals[i].getBoundingClientRect().top;
-    const revealPoint = 180;
-
-    if (elementTop < windowHeight - revealPoint) {
-      reveals[i].classList.add("active");
-      reveals[i].classList.remove("reveal");
-    }
+const observer = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        observer.unobserve(entry.target); // 🔑 only once
+      }
+    });
+  },
+  {
+    threshold: 0.15,
+    rootMargin: "0px 0px -80px 0px"
   }
-}
+);
 
-window.addEventListener("scroll", handleScroll);
-handleScroll(); // run once on load
+reveals.forEach(el => observer.observe(el));
 
 
 
@@ -68,14 +69,14 @@ document.querySelector(".next").addEventListener("click", () => {
 // Autoplay every 3 seconds
 let autoplay = setInterval(() => {
   changeMember((currentIndex + 1) % teamMembers.length);
-}, 3000);
+}, 6000);
 
 // Stop & restart autoplay on user interaction
 function restartAutoplay() {
   clearInterval(autoplay);
   autoplay = setInterval(() => {
     changeMember((currentIndex + 1) % teamMembers.length);
-  }, 3000);
+  }, 6000);
 }
 
 // Initialize first member
@@ -167,6 +168,7 @@ function smoothScrollTo(target, duration) {
 
   requestAnimationFrame(animation);
 }
+
 
 
 
