@@ -1,0 +1,470 @@
+/* -------------------------
+   GLOBAL RESET + BASE
+-------------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f3f5f4;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+#scroll-progress {
+  position: fixed; height: 3px;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: #2f7d32;
+  z-index: 2000;
+}
+
+/* -------------------------
+   HEADER (CENTERED FLOATING NAV)
+-------------------------- */
+
+header {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: none;
+  padding: 0;
+}
+
+header:not(.scrolled) {
+  opacity: 0.92;
+  transform: translateX(-50%) translateY(0);
+}
+
+header.scrolled nav ul {
+  transition: gap 0.3s ease;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;              
+  justify-content: center;      
+  gap: 12px;                    
+    row-gap: 14px;
+  margin: 0;
+  padding: 0;
+  max-width: 1100px;            
+}
+
+
+nav ul li a {
+  text-decoration: none;
+  padding: 6px 4px;
+  background: transparent;
+  border-radius: 0;
+
+  color: #1f1f1f;
+  font-weight: 400;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  opacity: 0.85;
+  
+  position: relative;
+}
+
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: #2f7d32;
+  transition: width 0.35s ease;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+
+
+/* -------------------------
+   HOME (HERO SECTION)
+-------------------------- */
+
+#home {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;             
+  min-height: 100vh;
+  background: url('forest.jpg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-content {
+  padding-top: 230px;   
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 3;
+}
+
+/* Hero dark overlay */
+#home::before {
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.18) 40%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+}
+
+
+/* Fade-out at bottom of hero */
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,1) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Dove */
+.hero-left img {
+  width: 170px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 3;
+}
+
+/* Association Title */
+.hero-right h1 {
+  font-family: 'Merriweather', serif;
+  color: white;
+  font-size: 2.6rem;
+  line-height: 1.15;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+  position: relative;
+  z-index: 3;
+}
+
+
+/* -------------------------
+   SECTION DEFAULTS
+-------------------------- */
+
+section:not(#home) {
+  max-width: 1100px;
+  margin: 80px auto;
+  padding: 60px 40px;
+
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+
+  display: block;
+}
+
+section p {
+  line-height: 1.75;
+  font-size: 1.05rem;
+  color: #2a2a2a;
+}
+
+
+section h2 {
+  font-size: 2.1rem;
+  font-weight: 400;
+  letter-spacing: 0.4px
+  margin-bottom: 25px;
+}
+
+h3 {
+  font-weight: 600;
+}
+
+
+/* -------------------------
+   SPLIT SECTION
+-------------------------- */
+
+.split-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.split-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid #000;
+  border-radius: 20px;
+  padding: 35px;
+  backdrop-filter: blur(1.5px);
+}
+
+.split-card h2 {
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .split-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* -------------------------
+   TEAM SECTION
+-------------------------- */
+
+#team {
+  text-align: center;
+}
+
+.team-carousel {
+  margin: 40px auto;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.team-member {
+  width: 70%;
+  padding: 30px;
+  border: 2px solid #000;
+  border-radius: 18px;
+  background: white;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+  border: none;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+}
+
+.team-member.fade-out {
+  opacity: 0;
+}
+
+.team-carousel button {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #000;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+.team-carousel button:hover {
+  background: #000;
+  color: #fff;
+}
+
+.team-member h3 {
+  margin: 0 0 10px;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.team-member p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+
+
+/* -------------------------
+   CONTACT SECTION
+-------------------------- */
+
+#contact form {
+  max-width: 700px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#contact input,
+#contact textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+  border-color: #2f7d32;
+}
+
+
+#contact textarea {
+  height: 150px;
+  resize: none;
+}
+
+#contact button {
+  margin-top: 10px;
+  padding: 14px 24px;
+
+  background: #2f7d32;
+  color: #fff;
+
+  border: none;
+  border-radius: 10px;
+
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#contact button:hover {
+  background: #27692a;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  transform: translateY(-1px);
+}
+
+#contact button:focus {
+  outline: none;
+}
+
+#contact button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+/* -------------------------
+   FOOTER
+-------------------------- */
+
+footer {
+  text-align: center;
+  padding: 30px;
+  margin-top: 80px;
+  background: rgba(255, 255, 255, 0.4);
+  border-top: 2px solid #000;
+}
+
+.footer-nav {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.footer-nav a {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* -------------------------
+   SCROLL REVEAL ANIMATIONS
+-------------------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+}
+
+.team-member.reveal {
+  transform: translateY(18px);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+
+}
+
+/* -------------------------
+   NAV BACKGROUND ON SCROLL
+-------------------------- */
+
+header.scrolled {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-radius: 18px;
+  padding: 14px 22px;
+
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* -------------------------
+   NAV BACKGROUND APPARITION
+-------------------------- */
+
+header {
+  transition:
+    background 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s ease,
+    opacity 0.25s ease;
+}
+
+header.scrolled {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-radius: 18px;
+  padding: 14px 22px;
+
+  box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+
+  transform: translateX(-50%) translateY(6px);
+  opacity: 1;
+}
