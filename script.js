@@ -119,30 +119,54 @@ window.addEventListener("scroll", () => {
 });
 
 /* ---------------------------
-   SMOOTH NAV SCROLL (NO SNAP)
+   DEFINITIVE SMOOTH SCROLL
 ---------------------------- */
 
-document.querySelectorAll('nav a[href^="#"]').forEach(link => {
-  link.addEventListener("click", function (e) {
+document.querySelectorAll("nav a[data-target]").forEach(link => {
+  link.addEventListener("click", e => {
     e.preventDefault();
 
-    const targetId = this.getAttribute("href");
-    const target = document.querySelector(targetId);
+    const id = link.dataset.target;
+    const target = document.getElementById(id);
     if (!target) return;
 
     const headerOffset = 140;
-    const elementPosition = target.getBoundingClientRect().top;
-    const offsetPosition =
-      elementPosition + window.pageYOffset - headerOffset;
+    const targetY =
+      target.getBoundingClientRect().top +
+      window.pageYOffset -
+      headerOffset;
 
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: "smooth"
-    });
+    smoothScrollTo(targetY, 900);
 
-    // Stops the snap
-    history.pushState(null, "", targetId);
+    history.pushState(null, "", `#${id}`);
   });
 });
+
+function smoothScrollTo(target, duration) {
+  const start = window.pageYOffset;
+  const distance = target - start;
+  let startTime = null;
+
+  function animation(currentTime) {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / duration, 1);
+
+    // easeInOutCubic
+    const ease =
+      progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+    window.scrollTo(0, start + distance * ease);
+
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    }
+  }
+
+  requestAnimationFrame(animation);
+}
+
 
 
