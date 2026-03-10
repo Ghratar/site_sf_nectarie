@@ -1,0 +1,1130 @@
+/* -------------------------
+   GLOBAL RESET + BASE
+-------------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #394032;
+  color: #2a2a2a;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+#scroll-progress {
+  position: fixed; height: 3px;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: #797F3E;
+  z-index: 2000;
+}
+
+/* -------------------------
+   HEADER (CENTERED FLOATING NAV)
+-------------------------- */
+
+header {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  background: rgba(57, 64, 50, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  border-radius: 18px;
+  padding: 12px 22px;
+
+  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+
+  transition:
+    background 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s ease,
+    opacity 0.25s ease;
+}
+
+
+header:not(.scrolled) {
+  opacity: 0.92;
+  transform: translateX(-50%) translateY(0);
+}
+
+header.scrolled nav ul {
+  transition: gap 0.3s ease;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;              
+  justify-content: center;      
+  gap: 12px;                    
+    row-gap: 14px;
+  margin: 0;
+  padding: 0;
+  max-width: 1100px;            
+}
+
+
+nav ul li a {
+  text-decoration: none;
+  padding: 6px 4px;
+  background: transparent;
+  border-radius: 0;
+
+  color: #f4f3ec;
+  font-weight: 400;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  opacity: 0.95;
+  
+  position: relative;
+}
+
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: #9F7E4A;
+  transition: width 0.35s ease;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+
+
+/* -------------------------
+   HOME (HERO SECTION)
+-------------------------- */
+
+#home {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;             
+  min-height: 100vh;
+  background: url('forest.jpeg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-content {
+  transform: translateY(-40px);
+  gap: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 3;
+}
+
+/* Hero dark overlay */
+#home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(57, 64, 50, 0.85) 0%,
+      rgba(57, 64, 50, 0.65) 35%,
+      rgba(57, 64, 50, 0.35) 70%,
+      rgba(57, 64, 50, 0.25) 100%
+    );
+  z-index: 2;
+}
+
+
+/* Fade-out at bottom of hero */
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(
+    to bottom,
+    rgba(245,244,238,0) 0%,
+    #394032 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Dove */
+.hero-left img {
+  width: 180px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 3;
+}
+
+.hero-left,
+.hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-logo-container {
+  perspective: 1000px;
+  display: inline-block;
+}
+
+.hero-logo {
+  width: 180px;
+    margin-bottom: 18px;
+
+  /* Color */
+  filter:
+    brightness(0) invert(1);
+
+  /* Depth layers */
+  drop-shadow: none;
+
+  /* Use box-shadow via pseudo-depth */
+  box-shadow: none;
+
+  /* Textural depth */
+  text-shadow: none;
+
+  /* Real depth */
+  filter:
+    brightness(0) invert(1)
+    drop-shadow(0 1px 0 rgba(255,255,255,0.6))   /* edge crispness */
+    drop-shadow(0 2px 4px rgba(0,0,0,0.55))     /* contact depth */
+    drop-shadow(0 6px 16px rgba(0,0,0,0.35));   /* atmospheric depth */
+
+  opacity: 0.98;
+
+  mix-blend-mode: normal;
+  
+}
+
+
+
+
+
+/* Association Title */
+.hero-right h1 {
+  font-family: 'Merriweather', serif;
+  color: #fafaf8;
+  opacity: 0.95;
+  font-size: 2.9rem;
+  line-height: 1.08;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+    backdrop-filter: blur(0.3px);
+
+  text-shadow:
+    0 2px 4px rgba(0,0,0,0.55),
+    0 6px 16px rgba(0,0,0,0.35);
+}
+
+.hero-right h1 span {
+  display: block;
+  font-size: 1.9rem;
+  letter-spacing: 1.2px;
+}
+
+
+
+/* -------------------------
+   SECTION DEFAULTS
+-------------------------- */
+section:not(#home):not(#despre-noi):not(#activitate):not(#implicare):not(#galerie):not(#contact) {
+  max-width: 1100px;
+  margin: 80px auto;
+  padding: 60px 40px;
+
+  background: rgba(245, 244, 238, 0.96);
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+
+  display: block;
+}
+
+section p {
+  line-height: 1.75;
+  font-size: 1.05rem;
+  color: #3b3b2e;
+}
+
+
+section h2 {
+  color: #454F2D;
+  font-size: 2.1rem;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+  margin-bottom: 25px;
+}
+
+h3 {
+  font-weight: 600;
+}
+
+
+/* -------------------------
+   SPLIT SECTION
+-------------------------- */
+
+.split-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.split-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid #000;
+  border-radius: 20px;
+  padding: 35px;
+  backdrop-filter: blur(1.5px);
+}
+
+.split-card h2 {
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .split-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* -------------------------
+   TEAM SECTION
+-------------------------- */
+
+#team {
+  text-align: center;
+}
+
+.team-carousel {
+  margin: 40px auto;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.team-member {
+  width: 70%;
+  padding: 30px;
+  border: 2px solid #000;
+  border-radius: 18px;
+  background: white;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+  border: none;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+}
+
+.team-member.fade-out {
+  opacity: 0;
+}
+
+.team-carousel button {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #000;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+.team-carousel button:hover {
+  background: #000;
+  color: #fff;
+}
+
+.team-member h3 {
+  margin: 0 0 10px;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.team-member p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+
+
+/* -------------------------
+   CONTACT SECTION
+-------------------------- */
+
+#contact form {
+  max-width: 700px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#contact input,
+#contact textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+  border-color: #2f7d32;
+}
+
+
+#contact textarea {
+  height: 150px;
+  resize: none;
+}
+
+#contact button {
+  margin-top: 10px;
+  padding: 14px 24px;
+
+  background: #454F2D;
+  color: #fff;
+
+  border: none;
+  border-radius: 10px;
+
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#contact button:hover {
+  background: #394032;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  transform: translateY(-1px);
+}
+
+#contact button:focus {
+  outline: none;
+}
+
+#contact button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+/* -------------------------
+   FOOTER
+-------------------------- */
+
+footer {
+  text-align: center;
+  padding: 30px;
+  margin-top: 80px;
+  background: rgba(57, 64, 50, 0.6);
+  color: #f2f2ec;
+  border-top: none;
+}
+
+.footer-nav {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.footer-nav a {
+  color: #e6e4da;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* -------------------------
+   SCROLL REVEAL ANIMATIONS
+-------------------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+}
+
+.reveal p {
+  transition-delay: 0.15s;
+}
+
+
+.team-member.reveal {
+  transform: translateY(18px);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+
+}
+
+/* -------------------------
+   NAV BACKGROUND ON SCROLL
+-------------------------- */
+
+header.scrolled {
+  background: rgba(57, 64, 50, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-radius: 18px;
+  padding: 14px 22px;
+
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  transition: background 0.75s ease, box-shadow 0.75s ease;
+}
+
+#despre-noi {
+  max-width: 1650px;
+  width: min(1650px, 97vw);
+  margin: 50px auto 80px auto;
+  padding: 40px 40px;
+  scroll-margin-top: 90px;
+}
+
+#despre-noi.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "mission history"
+    "team team";
+  gap: 28px;
+  align-items: stretch;
+}
+
+.mission-card {
+  grid-area: mission;
+}
+
+.history-card {
+  grid-area: history;
+}
+
+.team-stack-card {
+  grid-area: team;
+  width: 96%;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 36px;
+  align-items: start;
+  padding: 34px;
+}
+
+#despre-noi .split-card {
+  height: 100%;
+}
+
+.people-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.people-block h2,
+.people-block .subsection-title {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.subsection-title {
+  color: #454F2D;
+  font-size: 2.1rem;
+  font-weight: 400;
+}
+
+#despre-noi .about-carousel {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 52px minmax(260px, 340px) 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+#despre-noi .about-carousel .team-member,
+#despre-noi .about-carousel .collaborator-member {
+  width: 100%;
+  min-height: 190px;
+  padding: 24px 22px;
+  border-radius: 18px;
+  background: #f7f6f1;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#despre-noi .about-carousel .team-member h3,
+#despre-noi .about-carousel .collaborator-member h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.55rem;
+  line-height: 1.25;
+  color: #2f2f2f;
+  min-height: 3.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-wrap: balance;
+}
+
+#despre-noi .about-carousel .team-member p,
+#despre-noi .about-carousel .collaborator-member p {
+  margin: 0;
+  font-size: 1rem;
+  color: #666;
+  min-height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#despre-noi .about-carousel button {
+  align-self: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid #222;
+  background: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  flex-shrink: 0;
+}
+
+#despre-noi .about-carousel button:hover {
+  transform: scale(1.05);
+    background: #000;
+  color: #fff;
+}
+
+@media (max-width: 1200px) {
+  #despre-noi {
+    width: min(1400px, 97vw);
+    padding: 34px 24px;
+  }
+
+  .team-stack-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 980px) {
+  #despre-noi.about-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "mission"
+      "history"
+      "team";
+  }
+
+  .team-stack-card {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  #despre-noi {
+    padding: 24px 16px;
+  }
+
+  #despre-noi .split-card {
+    padding: 22px;
+  }
+
+  #despre-noi .about-carousel {
+    grid-template-columns: 42px minmax(180px, 1fr) 42px;
+    gap: 10px;
+  }
+
+  #despre-noi .about-carousel .team-member,
+  #despre-noi .about-carousel .collaborator-member {
+    min-height: 170px;
+    padding: 18px 14px;
+  }
+
+  #despre-noi .about-carousel .team-member h3,
+  #despre-noi .about-carousel .collaborator-member h3 {
+    font-size: 1.15rem;
+    min-height: 3.2rem;
+  }
+
+  #despre-noi .about-carousel button {
+    width: 42px;
+    height: 42px;
+    font-size: 1.4rem;
+  }
+}
+
+#despre-noi .about-carousel {
+  align-items: center;
+}
+
+#despre-noi p strong {
+  font-weight: 600;
+  color: #454F2D;
+}
+
+/* -------------------------
+   ACTIVITATE
+-------------------------- */
+
+#activitate {
+  max-width: 1650px;
+  width: 97vw;
+  margin: 80px auto;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "perspectiva colaborari"
+    "prezent prezent";
+  gap: 30px;
+}
+
+#activitate .activity-card {
+  display: flex;
+  flex-direction: column;
+  padding: 35px;
+  height: 100%;
+}
+
+#activitate .activity-card:nth-child(1) {
+  grid-area: perspectiva;
+}
+
+#activitate .activity-card:nth-child(2) {
+  grid-area: colaborari;
+}
+
+#activitate .activity-card:nth-child(3) {
+  grid-area: prezent;
+  width: 75%;
+  justify-self: center;
+}
+
+#activitate h2 {
+  margin-top: 0;
+}
+
+#activitate p {
+  line-height: 1.75;
+}
+
+#activitate .activity-card p strong {
+  font-weight: 600;
+  color: #454F2D;
+}
+
+@media (max-width: 980px) {
+  #activitate {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "perspectiva"
+      "colaborari"
+      "prezent";
+  }
+
+  #activitate .activity-card:nth-child(3) {
+    width: 100%;
+  }
+}
+
+#implicare {
+  max-width: 1650px;
+  width: 97vw;
+  margin: 80px auto;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "trei-cinci douazeci"
+    "voluntariat voluntariat";
+  gap: 30px;
+}
+
+#implicare .implicare-card {
+  display: flex;
+  flex-direction: column;
+  padding: 35px;
+  height: 100%;
+}
+
+#implicare .implicare-card:nth-child(1) {
+  grid-area: trei-cinci;
+}
+
+#implicare .implicare-card:nth-child(2) {
+  grid-area: douazeci;
+}
+
+#implicare .voluntariat-card {
+  grid-area: voluntariat;
+  width: 78%;
+  justify-self: center;
+}
+
+#implicare h2 {
+  margin-top: 0;
+}
+
+#implicare p {
+  line-height: 1.75;
+}
+
+#implicare p strong {
+  font-weight: 600;
+  color: #454F2D;
+}
+
+@media (max-width: 980px) {
+  #implicare {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "trei-cinci"
+      "douazeci"
+      "voluntariat";
+  }
+
+  #implicare .voluntariat-card {
+    width: 100%;
+  }
+}
+
+/* -------------------------
+   GALERIE CAROUSEL
+-------------------------- */
+
+#galerie {
+  max-width: 1650px;
+  width: 97vw;
+  margin: 80px auto;
+}
+
+.gallery-carousel {
+  margin: 40px auto 0;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.gallery-frame {
+  width: 100%;
+  max-width: 950px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px solid #000;
+  border-radius: 20px;
+  padding: 28px;
+  backdrop-filter: blur(1.5px);
+  text-align: center;
+}
+
+#gallery-title {
+  margin: 0 0 20px 0;
+  color: #454F2D;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+#gallery-image {
+  width: 100%;
+  max-height: 620px;
+  object-fit: contain;
+  border-radius: 14px;
+  display: block;
+  margin: 0 auto;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+#gallery-image.fade-out,
+#gallery-title.fade-out {
+  opacity: 0;
+}
+
+.gallery-carousel button {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #000;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
+
+.gallery-carousel button:hover {
+  transform: scale(1.05);
+  background: #000;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .gallery-carousel {
+    gap: 14px;
+  }
+
+  .gallery-frame {
+    padding: 20px;
+  }
+
+  #gallery-title {
+    font-size: 1.5rem;
+  }
+
+  .gallery-carousel button {
+    width: 42px;
+    height: 42px;
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .gallery-carousel {
+    gap: 10px;
+  }
+
+  #gallery-image {
+    max-height: 420px;
+  }
+}
+
+/* -------------------------
+   CONTACT
+-------------------------- */
+
+#contact {
+  max-width: 1650px;
+  width: 97vw;
+  margin: 80px auto;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "locatie telefon"
+    "formular formular";
+  gap: 30px;
+}
+
+#contact > .location-card {
+  grid-area: locatie;
+}
+
+#contact > .phone-card {
+  grid-area: telefon;
+}
+
+#contact > .contact-form-card {
+  grid-area: formular;
+  width: 72%;
+  justify-self: center;
+}
+
+#contact .contact-card {
+  display: flex;
+  flex-direction: column;
+  padding: 35px;
+  height: 100%;
+}
+
+#contact h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+#contact p {
+  line-height: 1.75;
+}
+
+#contact p strong {
+  font-weight: 600;
+  color: #454F2D;
+}
+
+.contact-map {
+  width: 100%;
+  height: 320px;
+  margin-top: 20px;
+  border: 0;
+  border-radius: 16px;
+}
+
+#contact form {
+  max-width: 100%;
+  margin: 10px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#contact input,
+#contact textarea,
+#contact select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  font-family: inherit;
+  background: #fff;
+}
+
+#contact input:focus,
+#contact textarea:focus,
+#contact select:focus {
+  border-color: #2f7d32;
+}
+
+#contact textarea {
+  height: 150px;
+  resize: none;
+}
+
+#contact button {
+  margin-top: 10px;
+  padding: 14px 24px;
+  background: #454F2D;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#contact button:hover {
+  transform: scale(1.05);
+  background: #394032;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  transform: translateY(-1px);
+}
+
+#contact button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 980px) {
+  #contact {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "locatie"
+      "telefon"
+      "formular";
+  }
+
+  #contact > .contact-form-card {
+    width: 100%;
+  }
+}
+
+/* LIGHTBOX GALERIE */
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
