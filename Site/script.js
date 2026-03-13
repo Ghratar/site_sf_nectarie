@@ -308,3 +308,15 @@ lightbox.addEventListener("click", (e) => {
     lightbox.style.display = "none";
   }
 });
+
+/* ---------------------------
+   BACK TO TOP BUTTON
+---------------------------- */
+
+const backToTopBtn = document.getElementById("back-to-top");
+
+if (backToTopBtn) {
+  backToTopBtn.addEventListener("click", () => {
+    smoothScrollTo(0, 800);
+  });
+}
