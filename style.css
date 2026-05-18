@@ -1402,3 +1402,54 @@ header.scrolled {
   margin: 6px 0;
   font-size: 0.98rem;
 }
+
+/* -------------------------
+   DONATION FORM BUTTONS
+-------------------------- */
+
+.donation-actions {
+  margin-top: auto;
+  padding-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.download-form-btn,
+.secondary-form-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.download-form-btn {
+  background: #9F7E4A;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.16);
+}
+
+.download-form-btn:hover {
+  background: #b08c54;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.22);
+}
+
+.secondary-form-link {
+  background: rgba(69, 79, 45, 0.1);
+  color: #454F2D;
+  border: 1px solid rgba(69, 79, 45, 0.25);
+}
+
+.secondary-form-link:hover {
+  background: rgba(69, 79, 45, 0.16);
+  color: #454F2D;
+  transform: translateY(-2px);
+}
