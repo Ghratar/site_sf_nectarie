@@ -1320,3 +1320,23 @@ header.scrolled {
     align-items: flex-start;
   }
 }
+
+.form-status {
+  margin-top: 10px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.form-status.success {
+  color: #454F2D;
+}
+
+.form-status.error {
+  color: #8a1f1f;
+}
+
+#contact button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}

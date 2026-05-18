@@ -324,30 +324,39 @@
       generale, colaborări, implicare sau solicitări de informații.
     </p>
 
-    <form>
-      <label>Nume complet</label>
-      <input type="text" name="fullname" required>
+    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="cdb9305-b5dd-46af-9f96-333cc3b744e9">
+  <input type="hidden" name="subject" value="Mesaj nou de pe site - Asociația Sfântul Nectarie">
+  <input type="hidden" name="from_name" value="Formular contact - atiaria.org">
 
-      <label>Email</label>
-      <input type="email" name="email" required>
+  <!-- Anti-spam hidden field -->
+  <input type="checkbox" name="botcheck" style="display: none;">
 
-      <label>Telefon (opțional)</label>
-      <input type="text" name="phone">
+  <label for="fullname">Nume complet</label>
+  <input id="fullname" type="text" name="name" required>
 
-      <label>Categorie</label>
-      <select name="category">
-        <option value="">Selectează o categorie</option>
-        <option value="informatii">Informații generale</option>
-        <option value="colaborari">Colaborări</option>
-        <option value="voluntariat">Voluntariat</option>
-        <option value="donatii">Donații / susținere</option>
-      </select>
+  <label for="email">Email</label>
+  <input id="email" type="email" name="email" required>
 
-      <label>Mesaj</label>
-      <textarea name="message" required></textarea>
+  <label for="phone">Telefon (opțional)</label>
+  <input id="phone" type="text" name="phone">
 
-      <button type="submit">Trimite</button>
-    </form>
+  <label for="category">Categorie</label>
+  <select id="category" name="category" required>
+    <option value="" disabled selected>Selectează o categorie</option>
+    <option value="Informații generale">Informații generale</option>
+    <option value="Colaborări">Colaborări</option>
+    <option value="Voluntariat">Voluntariat</option>
+    <option value="Donații / susținere">Donații / susținere</option>
+  </select>
+
+  <label for="message">Mesaj</label>
+  <textarea id="message" name="message" required></textarea>
+
+  <p id="contact-status" class="form-status" aria-live="polite"></p>
+
+  <button type="submit">Trimite</button>
+</form>
   </div>
 
 </section>

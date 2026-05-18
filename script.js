@@ -320,3 +320,58 @@ if (backToTopBtn) {
     smoothScrollTo(0, 800);
   });
 }
+
+/* ---------------------------
+   CONTACT FORM EMAIL SUBMIT
+---------------------------- */
+
+const contactForm = document.getElementById("contact-form");
+const contactStatus = document.getElementById("contact-status");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return;
+    }
+
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.textContent;
+
+    contactStatus.textContent = "Se trimite mesajul...";
+    contactStatus.className = "form-status";
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Se trimite...";
+
+    try {
+      const formData = new FormData(contactForm);
+
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json"
+        }
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        contactStatus.textContent = "Mesajul a fost trimis cu succes. Vă mulțumim!";
+        contactStatus.className = "form-status success";
+        contactForm.reset();
+      } else {
+        throw new Error(result.message || "Trimiterea mesajului a eșuat.");
+      }
+    } catch (error) {
+      contactStatus.textContent = "Mesajul nu a putut fi trimis. Vă rugăm să încercați din nou sau să ne scrieți direct la contact@atiaria.org.";
+      contactStatus.className = "form-status error";
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+    }
+  });
+}
