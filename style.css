@@ -1340,3 +1340,65 @@ header.scrolled {
   cursor: not-allowed;
   transform: none;
 }
+
+.donation-actions {
+  margin-top: auto;
+  padding-top: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.download-form-btn,
+.secondary-form-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.download-form-btn {
+  background: #9F7E4A;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.16);
+}
+
+.download-form-btn:hover {
+  background: #b08c54;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.22);
+}
+
+.secondary-form-link {
+  background: rgba(69, 79, 45, 0.1);
+  color: #454F2D;
+  border: 1px solid rgba(69, 79, 45, 0.25);
+}
+
+.secondary-form-link:hover {
+  background: rgba(69, 79, 45, 0.16);
+  transform: translateY(-2px);
+}
+
+.company-donation-info {
+  margin-top: 8px;
+}
+
+.association-details {
+  margin-top: 14px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: rgba(69, 79, 45, 0.07);
+  border: 1px solid rgba(69, 79, 45, 0.18);
+}
+
+.association-details p {
+  margin: 6px 0;
+  font-size: 0.98rem;
+}
