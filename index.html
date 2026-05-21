@@ -26,17 +26,22 @@
   <meta name="twitter:image" content="https://atiaria.org/images/og-cover.jpg" />
 
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Preload hero LCP image so the browser starts downloading it
-       before parsing the body — biggest single win for mobile LCP. -->
+  <!-- Preload hero LCP image (background of hero section) so the
+       browser starts downloading it before parsing the body. -->
   <link rel="preload"
         as="image"
         type="image/webp"
         imagesrcset="images/forest-1920.webp 1920w, images/forest-1280.webp 1280w, images/forest-640.webp 640w"
         imagesizes="100vw"
         fetchpriority="high" />
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap&subset=latin,latin-ext" rel="stylesheet" />
+  <!-- Preload the latin-ext font (Romanian diacritics live here)
+       so the LCP element (hero <h1>) renders without waiting on
+       the CSS to resolve the @font-face URL. -->
+  <link rel="preload"
+        as="font"
+        type="font/woff2"
+        href="fonts/merriweather-700-latin-ext.woff2"
+        crossorigin="anonymous" />
   <link rel="stylesheet" href="style.min.css" />
 
   <script type="application/ld+json">
@@ -99,7 +104,10 @@
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__content">
         <span class="hero__logo-wrap" aria-hidden="true">
-          <img src="dove.png" alt="" class="hero__logo" width="186" height="180" />
+          <picture>
+            <source type="image/webp" srcset="images/dove-180.webp 1x, images/dove-360.webp 2x" />
+            <img src="dove.png" alt="" class="hero__logo" width="186" height="180" decoding="async" />
+          </picture>
         </span>
         <h1 id="hero-title" class="hero__title">
           Asociația de Terapii Integrative<br>
