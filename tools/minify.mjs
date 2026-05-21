@@ -13,6 +13,7 @@
  */
 
 import { readFile, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import CleanCSS from "clean-css";
@@ -43,12 +44,16 @@ async function minJS() {
   });
   if (!out.code) throw new Error("terser produced no output");
   await writeFile(join(ROOT, "script.min.js"), out.code, "utf8");
-  console.log(`  script.js     ${kb(src.length).padStart(10)} → script.min.js     ${kb(out.code.length).padStart(10)}`);
+  const hash = createHash("sha1").update(out.code).digest("hex").slice(0, 8);
+  console.log(`  script.js     ${kb(src.length).padStart(10)} → script.min.js     ${kb(out.code.length).padStart(10)}   v=${hash}`);
+  return hash;
 }
 
-async function inlineCSSInto(htmlFile, css) {
+async function inlineCSSInto(htmlFile, css, jsHash) {
   const path = join(ROOT, htmlFile);
-  const html = await readFile(path, "utf8");
+  let html = await readFile(path, "utf8");
+
+  // 1. Inline minified CSS between sentinel markers
   const block =
     "<!-- inline-css:start -->\n" +
     "  <style>" + css + "</style>\n" +
@@ -58,13 +63,21 @@ async function inlineCSSInto(htmlFile, css) {
     console.warn(`  ${htmlFile}: no <!-- inline-css:start/end --> markers found, skipping`);
     return;
   }
-  const next = html.replace(re, block);
-  await writeFile(path, next, "utf8");
-  console.log(`  inlined CSS into ${htmlFile}`);
+  html = html.replace(re, block);
+
+  // 2. Cache-bust the script reference with the JS content hash so
+  //    browsers never serve stale JS after a deploy.
+  html = html.replace(
+    /src="script\.min\.js(?:\?v=[^"]*)?"/g,
+    `src="script.min.js?v=${jsHash}"`
+  );
+
+  await writeFile(path, html, "utf8");
+  console.log(`  inlined CSS + cache-bust into ${htmlFile}`);
 }
 
 console.log("Building atiaria.org");
 const css = await minCSS();
-await minJS();
-for (const f of HTML_FILES) await inlineCSSInto(f, css);
+const jsHash = await minJS();
+for (const f of HTML_FILES) await inlineCSSInto(f, css, jsHash);
 console.log("Done.");
