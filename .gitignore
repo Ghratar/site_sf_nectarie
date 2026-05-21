@@ -1,2 +1,17 @@
 Design/
 Site/
+
+# Node
+node_modules/
+
+# Local Claude Code workspace config
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp

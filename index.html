@@ -1,453 +1,413 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ro">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Asociația Sfântul Nectarie</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap&subset=latin,latin-ext" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#394032" />
 
+  <title>Asociația de Terapii Integrative „Sfântul Nectarie” — atiaria.org</title>
+  <meta name="description" content="Asociație din București care oferă informare, consiliere și sprijin persoanelor diagnosticate cu afecțiuni oncologice și familiilor acestora — terapii integrative, recuperare și a doua opinie medicală." />
+  <link rel="canonical" href="https://atiaria.org/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ro_RO" />
+  <meta property="og:site_name" content="Asociația de Terapii Integrative „Sfântul Nectarie”" />
+  <meta property="og:url" content="https://atiaria.org/" />
+  <meta property="og:title" content="Asociația de Terapii Integrative „Sfântul Nectarie”" />
+  <meta property="og:description" content="Informare, consiliere și sprijin pentru persoanele diagnosticate cu afecțiuni oncologice și familiile acestora." />
+  <meta property="og:image" content="https://atiaria.org/images/og-cover.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Logo dove — Asociația Sfântul Nectarie" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Asociația de Terapii Integrative „Sfântul Nectarie”" />
+  <meta name="twitter:description" content="Informare, consiliere și sprijin pentru persoanele diagnosticate cu afecțiuni oncologice." />
+  <meta name="twitter:image" content="https://atiaria.org/images/og-cover.jpg" />
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap&subset=latin,latin-ext" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NGO",
+    "name": "Asociația de Terapii Integrative „Sfântul Nectarie”",
+    "alternateName": "ATI Sfântul Nectarie",
+    "url": "https://atiaria.org/",
+    "logo": "https://atiaria.org/dove.png",
+    "email": "contact@atiaria.org",
+    "foundingDate": "2009",
+    "areaServed": "RO",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Str. Sergent Major Vasile Topliceanu nr. 14, ap. 39",
+      "addressLocality": "București",
+      "addressRegion": "Sector 5",
+      "addressCountry": "RO"
+    },
+    "description": "Asociație românească care oferă informare, consiliere și sprijin persoanelor diagnosticate cu afecțiuni oncologice și familiilor acestora, prin terapii integrative complementare."
+  }
+  </script>
 </head>
 <body>
-<div id="scroll-progress"></div>
-  <!-- Navigation -->
-  <header>
-    <nav>
+  <a class="skip-link" href="#main">Sari la conținut</a>
+
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <header class="site-header" id="site-header">
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+      aria-label="Deschide meniul">
+      <span class="nav-toggle__icon" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+    <nav id="primary-nav" class="site-nav" aria-label="Navigare principală">
       <ul>
-        <li><a href="#" data-target="home">ACASĂ</a></li>
-        <li><a href="#" data-target="despre-noi">DESPRE NOI</a></li>
-        <li><a href="#" data-target="activitate">ACTIVITATE</a></li>
-        <li><a href="#" data-target="implicare">IMPLICARE</a></li>
-        <li><a href="#" data-target="galerie">GALERIE</a></li>
-        <li><a href="#" data-target="contact">CONTACT</a></li>
+        <li><a href="#home">Acasă</a></li>
+        <li><a href="#despre-noi">Despre noi</a></li>
+        <li><a href="#activitate">Activitate</a></li>
+        <li><a href="#implicare">Implicare</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-  <div class="hero-content">
+  <main id="main">
 
-    <div class="hero-left">
-      <div class="hero-logo-container">
-        <img src="dove.png" alt="Logo Dove" class="hero-logo">
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <picture class="hero__bg">
+        <source type="image/webp" srcset="images/forest-1920.webp 1920w, images/forest-1280.webp 1280w, images/forest-640.webp 640w" sizes="100vw" />
+        <img src="forest.png" alt="" aria-hidden="true" fetchpriority="high" decoding="async" />
+      </picture>
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__content">
+        <span class="hero__logo-wrap" aria-hidden="true">
+          <img src="dove.png" alt="" class="hero__logo" width="180" height="180" />
+        </span>
+        <h1 id="hero-title" class="hero__title">
+          Asociația de Terapii Integrative<br>
+          <span>„Sfântul Nectarie”</span>
+        </h1>
+        <p class="hero__tagline">Informare, consiliere și sprijin pentru persoanele diagnosticate cu afecțiuni oncologice și familiile lor.</p>
+        <a href="#despre-noi" class="btn btn--accent hero__cta">Află mai multe</a>
       </div>
-    </div>
+    </section>
 
-    <div class="hero-right">
-      <h1>ASOCIAȚIA DE TERAPII<br>INTEGRATIVE<br>„SFÂNTUL NECTARIE”</h1>
-    </div>
+    <section id="despre-noi" class="section section--about reveal" aria-labelledby="despre-title">
+      <div class="container">
+        <header class="section__intro">
+          <h2 id="despre-title" class="section__title">Despre noi</h2>
+          <p class="section__lede">O comunitate de profesioniști și voluntari dedicați persoanelor care trec prin boala oncologică.</p>
+        </header>
 
-  </div>
-</section>
+        <div class="about__grid">
+          <article class="card card--mission">
+            <h3>Misiune</h3>
+            <p><strong>Informare și consiliere</strong> — Oferirea de informații clare și validate științific despre boala oncologică, opțiunile terapeutice și terapiile complementare, precum și îndrumare specializată pentru aparținători.</p>
+            <p><strong>Obținerea unei a doua opinii</strong> — Asistență în pregătirea și organizarea dosarului medical necesar evaluărilor suplimentare în centre specializate din țară sau din străinătate.</p>
+            <p><strong>Recuperare și suport</strong> — Demersuri integrate de susținere fizică, psiho-emoțională și spirituală, orientate spre îmbunătățirea calității vieții persoanelor diagnosticate cu afecțiuni oncologice.</p>
+          </article>
 
+          <article class="card card--history">
+            <h3>Istoric</h3>
+            <p><strong>Înființare</strong> — Fondată din necesitatea reglementării și monitorizării terapiilor complementare utilizate în context oncologic, pentru a asigura integrarea acestora în mod responsabil și fundamentat științific.</p>
+            <p><strong>Dezvoltare</strong> — Consiliere individuală și de grup privind regimurile igieno-dietetice și terapiile de suport, seminarii și ateliere dedicate persoanelor cu diagnostic oncologic și familiilor acestora.</p>
+            <p><strong>Extindere</strong> — Susținerea accesului la tratamente în afara țării, inclusiv prin mobilizarea de fonduri pentru persoane care necesitau intervenții medicale specializate indisponibile local.</p>
+          </article>
 
+          <article class="card card--people" aria-labelledby="echipa-title">
+            <div class="people-block">
+              <h3 id="echipa-title">Echipa</h3>
+              <div class="carousel" data-carousel="team" aria-roledescription="carousel">
+                <button class="carousel__btn carousel__btn--prev" type="button" aria-label="Membru anterior">&#10094;</button>
+                <div class="carousel__viewport" aria-live="polite" aria-atomic="true">
+                  <div class="carousel__slide">
+                    <p class="carousel__name" data-slot="name">Dr. Silvia Mihaela Ilie</p>
+                    <p class="carousel__role" data-slot="role">Medic Oncolog · Fondator</p>
+                  </div>
+                </div>
+                <button class="carousel__btn carousel__btn--next" type="button" aria-label="Membru următor">&#10095;</button>
+              </div>
+              <div class="carousel__dots" data-dots="team" role="tablist" aria-label="Membri echipă"></div>
+            </div>
 
-  <!-- About Us Section -->
-<section id="despre-noi" class="reveal about-grid">
-  <div class="split-card mission-card">
-    <h2>Misiune</h2>
-
-    <p>
-  <strong>Informare și consiliere</strong> - Oferirea de informații clare și validate științific despre boala
-  oncologică, opțiunile terapeutice și terapiile complementare, precum și îndrumare
-  specializată pentru aparținători.
-</p>
-
-    <p>
-  <strong>Obținerea unei a doua opinii</strong> - Asistență în pregătirea și organizarea dosarului medical
-  necesar evaluărilor suplimentare în centre specializate din țară sau din străinătate.
-</p>
-
-<p>
-  <strong>Recuperare și suport</strong> - Demersuri integrate de susținere fizică, psiho-emoțională și spirituală,
-  orientate spre îmbunătățirea calității vieții persoanelor diagnosticate cu afecțiuni oncologice.
-</p>
-  </div>
-
-  <div class="split-card history-card">
-    <h2>Istoric</h2>
-
-    <p>
-  <strong>Înființare</strong> - Fondată din necesitatea reglementării și monitorizării terapiilor complementare
-  utilizate în context oncologic, pentru a asigura integrarea acestora în mod responsabil și
-  fundamentat științific.
-</p>
-
-<p>
-  <strong>Dezvoltare</strong> - Consiliere individuală și de grup, privind regimurile igieno-dietetice și terapiile
-  de suport, seminarii și ateliere dedicate persoanelor cu diagnostic oncologic și familiilor acestora.
-</p>
-
-<p>
-  <strong>Extindere</strong> - Susținerea accesului la tratamente în afara țării, inclusiv prin mobilizarea de fonduri
-  pentru persoane care necesitau intervenții medicale specializate indisponibile local.
-</p>
-  </div>
-
-  <div class="split-card team-stack-card">
-    <div class="people-block">
-      <h2>Echipa</h2>
-
-      <div class="team-carousel about-carousel">
-        <button class="prev" type="button">&#10094;</button>
-
-        <div class="team-member">
-          <h3 id="team-name">Dr. Silvia Mihaela Ilie</h3>
-          <p id="team-role">Medic Oncolog / Fondator</p>
+            <div class="people-block">
+              <h3>Colaboratori</h3>
+              <div class="carousel" data-carousel="collab" aria-roledescription="carousel">
+                <button class="carousel__btn carousel__btn--prev" type="button" aria-label="Colaborator anterior">&#10094;</button>
+                <div class="carousel__viewport" aria-live="polite" aria-atomic="true">
+                  <div class="carousel__slide">
+                    <p class="carousel__name" data-slot="name">Narcisa Diana Opriș</p>
+                    <p class="carousel__role" data-slot="role">Farmacist</p>
+                  </div>
+                </div>
+                <button class="carousel__btn carousel__btn--next" type="button" aria-label="Colaborator următor">&#10095;</button>
+              </div>
+              <div class="carousel__dots" data-dots="collab" role="tablist" aria-label="Colaboratori"></div>
+            </div>
+          </article>
         </div>
-
-        <button class="next" type="button">&#10095;</button>
       </div>
-    </div>
+    </section>
 
-    <div class="people-block">
-      <h3 class="subsection-title">Colaboratori</h3>
+    <section id="activitate" class="section section--activity reveal" aria-labelledby="activitate-title">
+      <div class="container">
+        <header class="section__intro">
+          <h2 id="activitate-title" class="section__title">Activitate</h2>
+          <p class="section__lede">Ce facem, cu cine colaborăm și cum continuăm astăzi activitatea asociației.</p>
+        </header>
 
-      <div class="team-carousel about-carousel">
-        <button class="colab-prev" type="button">&#10094;</button>
+        <div class="activity__grid">
+          <article class="card">
+            <h3>Perspectiva</h3>
+            <p><strong>Mișcare, echilibru și viață</strong> — Un loc dedicat persoanelor diagnosticate și familiilor lor, unde mișcarea adaptată, echilibrul emoțional și terapiile complementare devin parte din parcursul de îngrijire, încă din perioada tratamentului și după finalizarea acestuia.</p>
+            <p><strong>Activități coordonate și adaptate individual</strong> — Exerciții fizice supravegheate, balneoterapie, psihoterapie, masaje terapeutice, terapii de grup (yoga, tai-chi, dans terapeutic), terapii individuale (auriculoacupunctură), precum și servicii pentru redobândirea stării de bine (sociocoafură, sociocosmetică).</p>
+            <p><strong>Elaborarea de materiale informative</strong> — Publicarea de broșuri și cărți dedicate terapiilor complementare autorizate și utile în timpul și după tratamentele oncologice, pentru o informare corectă și responsabilă.</p>
+          </article>
 
-        <div class="team-member collaborator-member">
-          <h3 id="colab-name">Narcisa Diana Opriș</h3>
-          <p id="colab-role">Farmacist</p>
+          <article class="card">
+            <h3>Colaborări</h3>
+            <p><strong>Fundația Renașterea</strong> — Parteneriat inițiat în 2009 pentru susținerea activităților Punctului de Informare din cadrul Institutului Oncologic București, dedicat regimului igieno-dietetic și terapiilor de suport în timpul și după tratamentele oncologice.</p>
+            <p><strong>Asociația P.A.V.E.L.</strong> — Colaborare pentru sprijin informațional și psiho-social adresat copiilor și tinerilor diagnosticați cu cancer și familiilor acestora.</p>
+            <p><strong>Patronatul Medicinei Integrative (P.M.I.)</strong> — Partener în proiectul european „Rețea multiregională pentru terapie integrativă, consiliere și reintegrare socială a persoanelor diagnosticate cu cancer” (2010–2013), cofinanțat din Fondul Social European, alături de un partener din Italia.</p>
+          </article>
+
+          <article class="card activity__wide">
+            <h3>În prezent</h3>
+            <p><strong>Informare online</strong> — Sesiuni dedicate regimului alimentar, terapiilor complementare și gestionării simptomelor în timpul și după tratamentele oncologice.</p>
+            <p><strong>Formare online</strong> — Cursuri aplicate de dietoterapie, automasaj și psihoterapie.</p>
+            <p><strong>Sprijin pentru a doua opinie oncologică</strong> — Facilitarea accesului la evaluări medicale în centre europene francofone de expertiză (Franța, Belgia, Elveția, Luxembourg) și orientare către terapii inovatoare indisponibile la nivel local.</p>
+          </article>
         </div>
-
-        <button class="colab-next" type="button">&#10095;</button>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-  <!-- Mission Section -->
-  <section id="activitate" class="reveal activities-grid">
+    <section id="implicare" class="section section--involve reveal" aria-labelledby="implicare-title">
+      <div class="container">
+        <header class="section__intro">
+          <h2 id="implicare-title" class="section__title">Implică-te</h2>
+          <p class="section__lede">Trei moduri prin care poți susține activitatea asociației — direct sau alături de noi.</p>
+        </header>
 
-  <div class="split-card activity-card">
-    <h2>Perspectiva</h2>
+        <div class="involve__grid">
+          <article class="card involve-card">
+            <p class="involve-card__eyebrow">Persoane fizice</p>
+            <h3>3,5% din impozit</h3>
+            <p><strong>Redirecționează 3,5% din impozitul pe venit</strong> — Poți susține activitatea Asociației Sfântul Nectarie fără costuri suplimentare, prin completarea formularului de redirecționare.</p>
+            <p><strong>Sprijin direct pentru programe</strong> — Contribuția ta ajută la susținerea activităților de informare, consiliere și suport pentru persoanele diagnosticate cu afecțiuni oncologice și familiile acestora.</p>
+            <p><strong>Implicare simplă</strong> — Este una dintre cele mai ușoare forme de sprijin, prin care poți contribui concret la continuitatea proiectelor asociației.</p>
+            <div class="card__actions">
+              <a href="documente/formular-230-atiaria.pdf" class="btn btn--accent" download>Descarcă Formularul 230</a>
+              <a href="https://static.anaf.ro/static/10/Anaf/Declaratii_R/230.html" class="btn btn--ghost" target="_blank" rel="noopener noreferrer">Instrucțiuni ANAF</a>
+            </div>
+          </article>
 
-    <p>
-      <strong>Mișcare, echilibru și viață</strong> - Un loc dedicat persoanelor
-      diagnosticate și familiilor lor, unde mișcarea adaptată, echilibrul
-      emoțional și terapiile complementare devin parte din parcursul de îngrijire,
-      încă din perioada tratamentului și după finalizarea acestuia.
-    </p>
+          <article class="card involve-card">
+            <p class="involve-card__eyebrow">Companii</p>
+            <h3>20% din impozit</h3>
+            <p><strong>Susținere din partea companiilor</strong> — Firmele pot redirecționa 20% din impozitul pe profit pentru a sprijini activitățile și proiectele asociației.</p>
+            <p><strong>Parteneriat cu impact</strong> — Prin această contribuție pot fi susținute programele de informare, recuperare, consiliere și integrare dedicate beneficiarilor.</p>
+            <p><strong>Responsabilitate socială</strong> — Este o formă concretă prin care mediul de afaceri poate participa activ la îmbunătățirea calității vieții persoanelor aflate în tratament sau recuperare.</p>
+            <div class="card__actions">
+              <a href="documente/formular-177-atiaria.pdf" class="btn btn--accent" download>Descarcă Formularul 177</a>
+              <a href="https://static.anaf.ro/static/10/Anaf/Declaratii_R/177.html" class="btn btn--ghost" target="_blank" rel="noopener noreferrer">Instrucțiuni ANAF</a>
+            </div>
+          </article>
 
-    <p>
-      <strong>Activități coordonate și adaptate individual</strong> - Exerciții fizice
-      supravegheate, balneoterapie, psihoterapie, masaje terapeutice, terapii de grup
-      (yoga, tai-chi, dans terapeutic), terapii individuale (auriculoacupunctură),
-      precum și servicii pentru redobândirea stării de bine (sociocoafură,
-      sociocosmetică).
-    </p>
+          <article class="card involve-card involve-card--wide">
+            <p class="involve-card__eyebrow">Alături de noi</p>
+            <h3>Voluntariat</h3>
+            <p><strong>Ne dorim alături oameni dedicați</strong> care pot contribui prin competență profesională sau experiență personală. Asociația caută voluntari din rândul medicilor oncologi, psihologilor, preoților, nutriționiștilor, kinetoterapeuților, farmaciștilor, specialiștilor în terapii complementare și membrilor familiilor persoanelor cu diagnostic oncologic.</p>
+            <p><strong>Te poți implica</strong> în activități de informare, susținere emoțională, consiliere, organizare de sesiuni tematice sau sprijin în cadrul programelor dedicate beneficiarilor.</p>
+            <p><strong>Dacă poți contribui</strong>, te invităm să te implici și să devii parte din această comunitate de sprijin.</p>
+            <div class="card__actions">
+              <a href="#contact" class="btn btn--primary">Scrie-ne</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    <p>
-      <strong>Elaborarea de materiale informative</strong> - Publicarea de broșuri și
-      cărți dedicate terapiilor complementare autorizate și utile în timpul și după
-      tratamentele oncologice, pentru o informare corectă și responsabilă.
-    </p>
-  </div>
+    <section id="galerie" class="section section--gallery reveal" aria-labelledby="galerie-title">
+      <div class="container">
+        <header class="section__intro">
+          <h2 id="galerie-title" class="section__title">Galerie</h2>
+          <p class="section__lede">Momente din activitatea asociației — pelerinaje, grupuri de suport, sărbători și colaborări.</p>
+        </header>
 
-  <div class="split-card activity-card">
-    <h2>Colaborări</h2>
+        <div class="gallery" data-carousel="gallery" aria-roledescription="carousel">
+          <button class="carousel__btn carousel__btn--prev gallery__btn" type="button" aria-label="Imaginea anterioară">&#10094;</button>
+          <figure class="gallery__frame">
+            <picture>
+              <source type="image/webp" data-slot="webp-srcset" srcset="images/SARBATORI-IMPREUNA-1280.webp 1280w, images/SARBATORI-IMPREUNA-640.webp 640w" sizes="(min-width: 900px) 900px, 100vw" />
+              <img class="gallery__img" data-slot="image" src="SARBATORI-IMPREUNA.png" alt="Sărbători împreună" loading="lazy" decoding="async" />
+            </picture>
+            <figcaption class="gallery__caption" data-slot="title">Sărbători împreună</figcaption>
+          </figure>
+          <button class="carousel__btn carousel__btn--next gallery__btn" type="button" aria-label="Imaginea următoare">&#10095;</button>
+          <div class="carousel__dots gallery__dots" data-dots="gallery" role="tablist" aria-label="Imagini galerie"></div>
+        </div>
+      </div>
+    </section>
 
-    <p>
-      <strong>Fundația Renașterea</strong> - Parteneriat inițiat în 2009 pentru
-      susținerea activităților Punctului de Informare din cadrul Institutului
-      Oncologic București, dedicat regimului igieno-dietetic și terapiilor de suport
-      în timpul și după tratamentele oncologice.
-    </p>
+    <section id="contact" class="section section--contact reveal" aria-labelledby="contact-title">
+      <div class="container">
+        <header class="section__intro">
+          <h2 id="contact-title" class="section__title">Contact</h2>
+          <p class="section__lede">Suntem aici pentru întrebări, colaborări sau orice formă de sprijin de care ai nevoie.</p>
+        </header>
 
-    <p>
-      <strong>Asociația P.A.V.E.L.</strong> - Colaborare pentru sprijin informațional
-      și psiho-social adresat copiilor și tinerilor diagnosticați cu cancer și
-      familiilor acestora.
-    </p>
+        <div class="contact__grid">
+          <article class="card contact__card">
+            <h3>Locație</h3>
+            <p><strong>Adresă</strong> — România, București, Sector 5, Str. Sergent Major Vasile Topliceanu nr. 14, ap. 39</p>
+            <iframe
+              class="contact__map"
+              title="Hartă — sediul asociației"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.6798067256364!2d26.061717476660565!3d44.41524770281139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff8372cfa6d5%3A0x8d81953478313f3d!2sStrada%20Sergent%20Major%20Topliceanu%20Vasile%2014%2C%20051762%20Bucure%C8%99ti%2C%20Romania!5e1!3m2!1sen!2sfr!4v1773401551968!5m2!1sen!2sfr"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen></iframe>
+          </article>
 
-    <p>
-      <strong>Patronatul Medicinei Integrative (P.M.I.)</strong> - Partener în
-      proiectul european „Rețea multiregională pentru terapie integrativă, consiliere
-      și reintegrare socială a persoanelor diagnosticate cu cancer” (2010-2013),
-      cofinanțat din Fondul Social European, alături de un partener din Italia.
-    </p>
-  </div>
+          <article class="card contact__card">
+            <h3>Program și email</h3>
+            <p><strong>Program</strong> — Luni–Vineri, 10:00–16:00</p>
+            <p><strong>Disponibilitate</strong> — Pentru informații, orientare și sprijin privind activitățile asociației.</p>
+            <p><strong>Email</strong> — <a href="mailto:contact@atiaria.org">contact@atiaria.org</a></p>
+          </article>
 
-  <div class="split-card activity-card">
-    <h2>În prezent</h2>
+          <article class="card contact__card contact__card--form">
+            <h3>Scrie-ne</h3>
+            <p class="contact__intro">Poți folosi formularul de mai jos pentru întrebări generale, colaborări, implicare sau solicitări de informații.</p>
 
-    <p>
-      <strong>Informare online</strong> - Sesiuni dedicate regimului alimentar,
-      terapiilor complementare și gestionării simptomelor în timpul și după
-      tratamentele oncologice.
-    </p>
+            <form id="contact-form" class="form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+              <input type="hidden" name="access_key" value="dcdb9305-b5dd-46af-9f96-333cc3b744e9" />
+              <input type="hidden" name="subject" value="Mesaj nou de pe site — Asociația Sfântul Nectarie" />
+              <input type="hidden" name="from_name" value="Formular contact — atiaria.org" />
+              <input type="checkbox" name="botcheck" class="form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-    <p>
-      <strong>Formare online</strong> - Cursuri aplicate de dietoterapie,
-      automasaj și psihoterapie.
-    </p>
+              <div class="form__row">
+                <label for="fullname">Nume complet</label>
+                <input id="fullname" type="text" name="Nume complet" autocomplete="name" required />
+              </div>
 
-    <p>
-      <strong>Sprijin pentru a doua opinie oncologică</strong> - Facilitarea accesului
-      la evaluări medicale în centre europene francofone de expertiză (Franța,
-      Belgia, Elveția, Luxembourg) și orientare către terapii inovatoare
-      indisponibile la nivel local.
-    </p>
-  </div>
+              <div class="form__row">
+                <label for="email">Email</label>
+                <input id="email" type="email" name="Email" autocomplete="email" required />
+              </div>
 
-</section>
-<section id="implicare" class="reveal implicare-grid">
+              <div class="form__row">
+                <label for="phone">Telefon <span class="form__optional">(opțional)</span></label>
+                <input id="phone" type="tel" name="Telefon" autocomplete="tel" inputmode="tel" />
+              </div>
 
-<div class="split-card implicare-card">
-  <h2>3.5%</h2>
+              <div class="form__row">
+                <label for="category">Categorie</label>
+                <select id="category" name="Categorie" required>
+                  <option value="" disabled selected>Selectează o categorie</option>
+                  <option value="Informații generale">Informații generale</option>
+                  <option value="Colaborări">Colaborări</option>
+                  <option value="Voluntariat">Voluntariat</option>
+                  <option value="Donații / susținere">Donații / susținere</option>
+                </select>
+              </div>
 
-  <p>
-    <strong>Redirecționează 3.5% din impozitul pe venit</strong> - Poți susține
-    activitatea Asociației Sfântul Nectarie fără costuri suplimentare, prin
-    completarea formularului de redirecționare.
-  </p>
+              <div class="form__row">
+                <label for="message">Mesaj</label>
+                <textarea id="message" name="Mesaj" rows="6" required></textarea>
+              </div>
 
-  <p>
-    <strong>Sprijin direct pentru programe</strong> - Contribuția ta ajută la
-    susținerea activităților de informare, consiliere și suport pentru persoanele
-    diagnosticate cu afecțiuni oncologice și familiile acestora.
-  </p>
+              <p id="contact-status" class="form__status" aria-live="polite" role="status"></p>
 
-  <p>
-    <strong>Implicare simplă</strong> - Este una dintre cele mai ușoare forme
-    de sprijin, prin care poți contribui concret la continuitatea proiectelor 
-    asociației.
-  </p>
+              <div class="form__actions">
+                <button type="submit" class="btn btn--primary">Trimite mesajul</button>
+              </div>
+            </form>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  <div class="donation-actions">
-    <a href="documente/formular-230-atiaria.pdf" class="download-form-btn" download>
-      Descarcă Formularul 230
-    </a>
+  </main>
 
-    <a href="https://static.anaf.ro/static/10/Anaf/Declaratii_R/230.html" class="secondary-form-link" target="_blank" rel="noopener">
-      Instrucțiuni ANAF
-    </a>
-  </div>
-</div>
-
-  <div class="split-card implicare-card">
-    <h2>20%</h2>
-
-    <p>
-      <strong>Susținere din partea companiilor</strong> - Firmele pot redirecționa
-      20% din impozitul pe profit pentru a sprijini activitățile și proiectele
-      asociației.
-    </p>
-
-    <p>
-      <strong>Parteneriat cu impact</strong> - Prin această contribuție pot fi
-      susținute programele de informare, recuperare, consiliere și integrare
-      dedicate beneficiarilor.
-    </p>
-
-    <p>
-      <strong>Responsabilitate socială</strong> - Este o formă concretă prin care
-      mediul de afaceri poate participa activ la îmbunătățirea calității vieții
-      persoanelor aflate în tratament sau recuperare.
-    </p>
-    <div class="donation-actions">
-  <a href="documente/formular-177-atiaria.pdf" class="download-form-btn" download>
-    Descarcă Formularul 177
-  </a>
-
-  <a href="https://static.anaf.ro/static/10/Anaf/Declaratii_R/177.html" class="secondary-form-link" target="_blank" rel="noopener">
-    Instrucțiuni ANAF
-  </a>
-</div>
-  </div>
-
-  <div class="split-card implicare-card voluntariat-card">
-    <h2>Voluntariat</h2>
-
-    <p>
-      <strong>Ne dorim alături oameni dedicați</strong> care pot contribui prin
-      competență profesională sau experiență personală. Asociația caută voluntari
-      din rândul medicilor oncologi, psihologilor, preoților, nutriționiștilor,
-      kinetoterapeuților, farmaciștilor, specialiștilor în terapii complementare
-      și membrilor familiilor persoanelor cu diagnostic oncologic.
-    </p>
-
-    <p>
-      <strong>Te poți implica</strong> în activități de informare, susținere
-      emoțională, consiliere, organizare de sesiuni tematice sau sprijin în
-      cadrul programelor dedicate beneficiarilor.
-    </p>
-
-    <p>
-      <strong>Dacă poți contribui</strong>, te invităm să te implici și să devii
-      parte din această comunitate de sprijin. 
-    </p>
-  </div>
-
-</section>
-
-<!--Gallery Section-->
-
-<section id="galerie" class="reveal">
-
-  <div class="gallery-carousel">
-    <button class="gallery-prev" type="button">&#10094;</button>
-
-    <div class="gallery-frame">
-      <h3 id="gallery-title">Sărbători împreună</h3>
-      <img id="gallery-image" src="SARBATORI-IMPREUNA.png" alt="Sărbători împreună">
-    </div>
-
-    <button class="gallery-next" type="button">&#10095;</button>
-  </div>
-</section>
-
-
-<!-- Contact Section -->
-<section id="contact" class="reveal contact-grid">
-
-  <div class="split-card contact-card location-card">
-    <h2>Locație</h2>
-
-    <p>
-      <strong>Adresă</strong> - Romania, Bucuresti, Sector 5, Str. Sergent Major Vasile Topliceanu nr. 14, ap. 39
-    </p>
-
-    <iframe
-      class="contact-map"
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.6798067256364!2d26.061717476660565!3d44.41524770281139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff8372cfa6d5%3A0x8d81953478313f3d!2sStrada%20Sergent%20Major%20Topliceanu%20Vasile%2014%2C%20051762%20Bucure%C8%99ti%2C%20Romania!5e1!3m2!1sen!2sfr!4v1773401551968!5m2!1sen!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </div>
-
-  <div class="split-card contact-card phone-card">
-<!--
-    <h2>Telefon</h2>
-
-    <p>
-      <strong>Număr de contact</strong> - +40 000 000 000
-    </p>
--->
-    <p>
-      <strong>Program</strong> - Luni-Vineri, 10:00-16:00
-    </p>
-
-    <p>
-      <strong>Disponibilitate</strong> - Pentru informații, orientare și sprijin
-      privind activitățile asociației.
-    </p>
-
-    <p>
-      <strong>Email</strong> - <a href="mailto:contact@atiaria.org">contact@atiaria.org</a>
-    </p>
-  </div>
-
-  <div class="split-card contact-card contact-form-card">
-    <h2>Contact</h2>
-
-    <p>
-      <strong>Scrie-ne</strong> - Poți folosi formularul de mai jos pentru întrebări
-      generale, colaborări, implicare sau solicitări de informații.
-    </p>
-
-    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="dcdb9305-b5dd-46af-9f96-333cc3b744e9">
-  <input type="hidden" name="subject" value="Mesaj nou de pe site - Asociația Sfântul Nectarie">
-  <input type="hidden" name="from_name" value="Formular contact - atiaria.org">
-
-  <!-- Anti-spam hidden field -->
-  <input type="checkbox" name="botcheck" style="display: none;">
-
-  <label for="fullname">Nume complet</label>
-  <input id="fullname" type="text" name="Nume complet" required>
-
-  <label for="email">Email</label>
-  <input id="email" type="email" name="Email" required>
-
-  <label for="phone">Telefon (opțional)</label>
-  <input id="phone" type="text" name="Telefon">
-
-  <label for="category">Categorie</label>
-  <select id="category" name="Categorie" required>
-    <option value="" disabled selected>Selectează o categorie</option>
-    <option value="Informații generale">Informații generale</option>
-    <option value="Colaborări">Colaborări</option>
-    <option value="Voluntariat">Voluntariat</option>
-    <option value="Donații / susținere">Donații / susținere</option>
-  </select>
-
-  <label for="message">Mesaj</label>
-  <textarea id="message" name="Mesaj" required></textarea>
-
-  <p id="contact-status" class="form-status" aria-live="polite"></p>
-
-  <button type="submit">Trimite</button>
-</form>
-  </div>
-
-</section>
-
-<footer class="footer">
-
-  <div class="footer-top">
-    <div class="footer-grid">
-
-      <div class="footer-brand">
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div class="site-footer__brand">
         <h3>Asociația Sfântul Nectarie</h3>
-        <p>
-          Asociația de Terapii Integrative „Sfântul Nectarie” oferă informare,
-          consiliere și sprijin persoanelor diagnosticate cu afecțiuni oncologice
-          și familiilor acestora, promovând un parcurs de îngrijire bazat pe
-          echilibru, responsabilitate și demnitate.
-        </p>
-
-        <a href="#implicare" class="footer-donate-btn">Susține activitatea</a>
+        <p>Asociația de Terapii Integrative „Sfântul Nectarie” oferă informare, consiliere și sprijin persoanelor diagnosticate cu afecțiuni oncologice și familiilor acestora, promovând un parcurs de îngrijire bazat pe echilibru, responsabilitate și demnitate.</p>
+        <a href="#implicare" class="btn btn--accent">Susține activitatea</a>
       </div>
 
-      <div class="footer-links">
+      <nav class="site-footer__nav" aria-label="Navigare secundară">
         <h3>Navigare</h3>
-        <a href="#home">Acasă</a>
-        <a href="#despre-noi">Despre noi</a>
-        <a href="#activitate">Activitate</a>
-        <a href="#implicare">Implicare</a>
-        <a href="#galerie">Galerie</a>
-        <a href="#contact">Contact</a>
-      </div>
+        <ul>
+          <li><a href="#home">Acasă</a></li>
+          <li><a href="#despre-noi">Despre noi</a></li>
+          <li><a href="#activitate">Activitate</a></li>
+          <li><a href="#implicare">Implicare</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
 
-      <div class="footer-contact">
+      <div class="site-footer__contact">
         <h3>Contact</h3>
-        <p><strong>Adresă:</strong> Romania, Bucuresti, Sector 5, <br> Str. Sergent Major Vasile Topliceanu nr. 14, Ap. 39</p>
-        <p><strong>Email:</strong> contact@atiaria.org</p>
-        <p><strong>Program:</strong> Luni - Vineri, 10:00-16:00</p>
+        <p><strong>Adresă:</strong> Str. Sergent Major Vasile Topliceanu nr. 14, ap. 39, Sector 5, București, România</p>
+        <p><strong>Email:</strong> <a href="mailto:contact@atiaria.org">contact@atiaria.org</a></p>
+        <p><strong>Program:</strong> Luni–Vineri, 10:00–16:00</p>
       </div>
 
-      <div class="footer-legal">
+      <div class="site-footer__legal">
         <h3>Informații utile</h3>
-        <a href="#">Politica de confidențialitate</a>
-        <a href="#">Termeni și condiții</a>
-        <a href="#">Politica cookies</a>
-        <a href="#contact">Solicită informații</a>
+        <ul>
+          <li><a href="confidentialitate.html">Politica de confidențialitate</a></li>
+          <li><a href="termeni.html">Termeni și condiții</a></li>
+          <li><a href="confidentialitate.html#cookies">Politica cookies</a></li>
+          <li><a href="#contact">Solicită informații</a></li>
+        </ul>
       </div>
+    </div>
 
+    <div class="site-footer__divider" aria-hidden="true"></div>
+
+    <div class="container site-footer__bottom">
+      <p>© 2009–<span id="current-year">2026</span> Asociația de Terapii Integrative „Sfântul Nectarie”. Toate drepturile rezervate.</p>
+      <button id="back-to-top" class="back-to-top" type="button" aria-label="Înapoi sus">↑</button>
+    </div>
+  </footer>
+
+  <dialog id="lightbox" class="lightbox" aria-label="Imagine mărită">
+    <form method="dialog" class="lightbox__form">
+      <button class="lightbox__close" type="submit" value="close" aria-label="Închide imaginea">×</button>
+    </form>
+    <figure class="lightbox__figure">
+      <img class="lightbox__img" src="" alt="" />
+      <figcaption class="lightbox__caption"></figcaption>
+    </figure>
+  </dialog>
+
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-desc" hidden>
+    <div class="cookie-banner__inner">
+      <h3 id="cookie-title" class="cookie-banner__title">Acest site folosește cookie-uri</h3>
+      <p id="cookie-desc" class="cookie-banner__desc">Folosim cookie-uri esențiale pentru funcționarea site-ului. Cu acordul tău, putem activa și instrumente opționale (statistici anonime) care ne ajută să îmbunătățim experiența vizitatorilor.</p>
+      <div class="cookie-banner__actions">
+        <button type="button" class="btn btn--primary" data-cookie="accept">Accept toate</button>
+        <button type="button" class="btn btn--ghost" data-cookie="reject">Doar esențiale</button>
+        <a href="confidentialitate.html#cookies" class="cookie-banner__link">Detalii</a>
+      </div>
     </div>
   </div>
 
-  <div class="footer-divider">
-    <span></span>
-  </div>
-
-  <div class="footer-bottom">
-    <p>© 2009 Asociația de Terapii Integrative „Sfântul Nectarie”. <br> Toate drepturile rezervate.</p>
-    <button id="back-to-top" class="back-to-top" type="button" aria-label="Înapoi sus">
-      ↑
-    </button>
-  </div>
-
-</footer>
-
-
-<div id="lightbox" class="lightbox">
-  <span class="lightbox-close">&times;</span>
-  <img class="lightbox-img" src="" alt="">
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

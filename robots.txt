@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://atiaria.org/sitemap.xml
