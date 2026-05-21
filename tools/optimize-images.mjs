@@ -24,7 +24,7 @@ const ROOT = join(__dirname, "..");
 const OUT  = join(ROOT, "images");
 
 const TARGETS = [
-  { src: "forest.png",            widths: [640, 1280, 1920], jpegWidth: 1280 },
+  { src: "forest.png",            widths: [480, 768, 1024, 1280, 1920], jpegWidth: 1280 },
   { src: "SARBATORI-IMPREUNA.png", widths: [640, 1280],       jpegWidth: 1280 },
   { src: "PELERINAJ.png",         widths: [640, 1280],       jpegWidth: 1280 },
   { src: "GRUP-DE-SUPORT.png",    widths: [640, 1280],       jpegWidth: 1280 },

@@ -992,19 +992,22 @@ body.nav-open { overflow: hidden; touch-action: none; }
 }
 .hero__cta { margin-top: var(--space-3); }
 
-/* Hero entrance — staggered intro on first paint ------------- */
+/* Hero entrance — staggered intro on first paint.
+   NOTE: the hero <h1> is intentionally NOT animated — it's the LCP
+   element, and animating its opacity from 0 forces Lighthouse to
+   wait until the animation completes before counting LCP. That
+   was costing us ~1.4s of LCP delay. The other hero elements still
+   animate; the title just renders instantly. */
 @keyframes hero-rise {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 .hero__logo-wrap,
-.hero__title,
 .hero__tagline,
 .hero__cta {
   animation: hero-rise 1.1s var(--ease-soft) both;
 }
 .hero__logo-wrap { animation-delay: 0.10s; display: inline-block; }
-.hero__title     { animation-delay: 0.28s; }
 .hero__tagline   { animation-delay: 0.50s; }
 .hero__cta       { animation-delay: 0.72s; }
 
