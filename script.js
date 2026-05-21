@@ -9,7 +9,7 @@ const observer = new IntersectionObserver(
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("active");
-        observer.unobserve(entry.target); // 🔑 only once
+        observer.unobserve(entry.target);
       }
     });
   },
@@ -89,7 +89,6 @@ const nameEl = document.getElementById("team-name");
 const roleEl = document.getElementById("team-role");
 const card = document.querySelector(".team-member");
 
-// Fade transition handler
 function changeMember(newIndex) {
   card.classList.add("fade-out");
 
@@ -99,10 +98,9 @@ function changeMember(newIndex) {
     roleEl.textContent = teamMembers[currentIndex].role;
 
     card.classList.remove("fade-out");
-  }, 500); // matches CSS transition time
+  }, 500);
 }
 
-// Buttons
 document.querySelector(".prev").addEventListener("click", () => {
   changeMember((currentIndex - 1 + teamMembers.length) % teamMembers.length);
   restartAutoplay();
@@ -113,12 +111,10 @@ document.querySelector(".next").addEventListener("click", () => {
   restartAutoplay();
 });
 
-// Autoplay every 3 seconds
 let autoplay = setInterval(() => {
   changeMember((currentIndex + 1) % teamMembers.length);
 }, 6000);
 
-// Stop & restart autoplay on user interaction
 function restartAutoplay() {
   clearInterval(autoplay);
   autoplay = setInterval(() => {
@@ -126,7 +122,6 @@ function restartAutoplay() {
   }, 6000);
 }
 
-// Initialize first member
 nameEl.textContent = teamMembers[0].name;
 roleEl.textContent = teamMembers[0].role;
 
@@ -134,8 +129,7 @@ roleEl.textContent = teamMembers[0].role;
 
 
 /* ---------------------------
-   OPTIONAL: Scroll to top on refresh
-   (Fixes weird scroll positions)
+   SCROLL TO TOP ON REFRESH
 ---------------------------- */
 
 window.onbeforeunload = function () {
@@ -200,7 +194,6 @@ function smoothScrollTo(target, duration) {
     const timeElapsed = currentTime - startTime;
     const progress = Math.min(timeElapsed / duration, 1);
 
-    // easeInOutCubic
     const ease =
       progress < 0.5
         ? 4 * progress * progress * progress
@@ -284,8 +277,6 @@ function restartGalleryAutoplay() {
 galleryTitleEl.textContent = galleryItems[0].title;
 galleryImageEl.src = galleryItems[0].image;
 galleryImageEl.alt = galleryItems[0].title;
-
-// LIGHTBOX GALERIE
 
 const galleryImages = document.querySelectorAll(".gallery-carousel img");
 const lightbox = document.getElementById("lightbox");
