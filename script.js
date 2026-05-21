@@ -470,73 +470,97 @@
       });
     }
 
-    const galleryRoot = document.querySelector('[data-carousel="gallery"]');
-    const galleryDots = document.querySelector('[data-dots="gallery"]');
-    if (galleryRoot) {
-      createCarousel(galleryRoot, GALLERY, {
-        autoplayMs: 7000,
-        dotsContainer: galleryDots,
-        labelFor: (i) => `Imagine ${i + 1}: ${GALLERY[i].title}`,
-        onRender: (slide, item) => {
-          const img    = galleryRoot.querySelector('[data-slot="image"]');
-          const source = galleryRoot.querySelector('[data-slot="webp-srcset"]');
-          const cap    = galleryRoot.querySelector('[data-slot="title"]');
-          if (img) {
-            img.src = item.src;
-            img.alt = item.alt || item.title;
-          }
-          if (source && item.webp) source.srcset = item.webp;
-          if (cap) cap.textContent = item.title;
-        }
-      });
-    }
+    // Gallery is now a tile grid + lightbox (see initLightbox);
+    // no carousel for gallery anymore.
   }
 
 
   /* -----------------------------------------------------------
-     LIGHTBOX — uses native <dialog>
+     LIGHTBOX — modern photo viewer
+     - Click any gallery tile to open at that image
+     - Prev / Next buttons inside, arrow keys, Escape closes
+     - Counter (1 / 4), caption with alt text
      ----------------------------------------------------------- */
   function initLightbox() {
     const dialog = document.getElementById("lightbox");
     if (!dialog) return;
 
-    const imgEl    = dialog.querySelector(".lightbox__img");
-    const captEl   = dialog.querySelector(".lightbox__caption");
+    const imgEl       = dialog.querySelector(".lightbox__img");
+    const captionEl   = dialog.querySelector("[data-lightbox-caption]");
+    const counterEl   = dialog.querySelector("[data-lightbox-counter]");
+    const prevBtn     = dialog.querySelector("[data-lightbox-prev]");
+    const nextBtn     = dialog.querySelector("[data-lightbox-next]");
+    const tiles       = [...document.querySelectorAll("[data-gallery-index]")];
 
-    function open(src, alt) {
-      if (!imgEl) return;
-      imgEl.src = src;
-      imgEl.alt = alt || "";
-      if (captEl) captEl.textContent = alt || "";
-      if (typeof dialog.showModal === "function") {
-        dialog.showModal();
-      } else {
-        // Fallback for browsers without <dialog>
-        dialog.setAttribute("open", "");
-      }
+    if (!tiles.length) return;
+
+    let index = 0;
+
+    function render() {
+      const item = GALLERY[index];
+      if (!item) return;
+      // Brief fade while the new image loads
+      imgEl.classList.add("is-swapping");
+      const next = new Image();
+      next.onload = () => {
+        imgEl.src = next.src;
+        imgEl.alt = item.alt || item.title || "";
+        if (next.naturalWidth)  imgEl.setAttribute("width",  next.naturalWidth);
+        if (next.naturalHeight) imgEl.setAttribute("height", next.naturalHeight);
+        imgEl.classList.remove("is-swapping");
+      };
+      next.src = item.src;
+      if (captionEl) captionEl.textContent = item.title || "";
+      if (counterEl) counterEl.textContent = `${index + 1} / ${GALLERY.length}`;
     }
 
-    // Click outside the image to close
-    dialog.addEventListener("click", (e) => {
-      const rect = imgEl.getBoundingClientRect();
-      const inside =
-        e.clientX >= rect.left && e.clientX <= rect.right &&
-        e.clientY >= rect.top  && e.clientY <= rect.bottom;
-      if (!inside && e.target !== imgEl) dialog.close();
+    function openAt(i) {
+      index = ((i % GALLERY.length) + GALLERY.length) % GALLERY.length;
+      render();
+      if (typeof dialog.showModal === "function") dialog.showModal();
+      else dialog.setAttribute("open", "");
+    }
+
+    function next() { index = (index + 1) % GALLERY.length; render(); }
+    function prev() { index = (index - 1 + GALLERY.length) % GALLERY.length; render(); }
+
+    // Tile clicks
+    tiles.forEach((tile) => {
+      tile.addEventListener("click", () => {
+        const i = parseInt(tile.dataset.galleryIndex, 10);
+        openAt(Number.isFinite(i) ? i : 0);
+      });
     });
 
-    // Wire gallery images
-    document.querySelectorAll(".gallery__img").forEach((img) => {
-      img.style.cursor = "zoom-in";
-      img.setAttribute("role", "button");
-      img.setAttribute("tabindex", "0");
-      img.addEventListener("click", () => open(img.src, img.alt));
-      img.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          open(img.src, img.alt);
-        }
-      });
+    // Nav buttons
+    if (prevBtn) prevBtn.addEventListener("click", prev);
+    if (nextBtn) nextBtn.addEventListener("click", next);
+
+    // Keyboard inside open dialog
+    dialog.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft")  { e.preventDefault(); prev(); }
+      if (e.key === "ArrowRight") { e.preventDefault(); next(); }
+    });
+
+    // Click outside the image (on the backdrop / figure padding) closes
+    dialog.addEventListener("click", (e) => {
+      // Don't close when clicking the image, caption, top bar, or nav buttons
+      if (e.target.closest(".lightbox__img, .lightbox__caption, .lightbox__topbar, .lightbox__nav")) return;
+      dialog.close();
+    });
+
+    // Basic touch swipe support
+    let touchStartX = null;
+    dialog.addEventListener("touchstart", (e) => {
+      touchStartX = e.touches[0]?.clientX ?? null;
+    }, { passive: true });
+    dialog.addEventListener("touchend", (e) => {
+      if (touchStartX === null) return;
+      const dx = (e.changedTouches[0]?.clientX ?? touchStartX) - touchStartX;
+      if (Math.abs(dx) > 40) {
+        if (dx < 0) next(); else prev();
+      }
+      touchStartX = null;
     });
   }
 
