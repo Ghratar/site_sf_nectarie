@@ -151,7 +151,13 @@
         const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
         smoothScrollTo(y, 900);
 
-        history.pushState(null, "", `#${id}`);
+        // Keep the URL bar clean — don't append #anchor to the address.
+        // If the user loaded a deep link like atiaria.org/#galerie the
+        // browser handles the initial scroll, and we strip the hash so
+        // subsequent navigation keeps the URL at its base form.
+        if (location.hash) {
+          history.replaceState(null, "", location.pathname + location.search);
+        }
 
         // Move focus to the target for screen reader users
         target.setAttribute("tabindex", "-1");
