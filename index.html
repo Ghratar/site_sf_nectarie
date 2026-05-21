@@ -28,6 +28,14 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Preload hero LCP image so the browser starts downloading it
+       before parsing the body — biggest single win for mobile LCP. -->
+  <link rel="preload"
+        as="image"
+        type="image/webp"
+        imagesrcset="images/forest-1920.webp 1920w, images/forest-1280.webp 1280w, images/forest-640.webp 640w"
+        imagesizes="100vw"
+        fetchpriority="high" />
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap&subset=latin,latin-ext" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 
@@ -86,12 +94,12 @@
     <section id="home" class="hero" aria-labelledby="hero-title">
       <picture class="hero__bg">
         <source type="image/webp" srcset="images/forest-1920.webp 1920w, images/forest-1280.webp 1280w, images/forest-640.webp 640w" sizes="100vw" />
-        <img src="forest.png" alt="" aria-hidden="true" fetchpriority="high" decoding="async" />
+        <img src="images/forest-1280.jpg" alt="" aria-hidden="true" width="1536" height="1024" fetchpriority="high" decoding="async" />
       </picture>
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__content">
         <span class="hero__logo-wrap" aria-hidden="true">
-          <img src="dove.png" alt="" class="hero__logo" width="180" height="180" />
+          <img src="dove.png" alt="" class="hero__logo" width="186" height="180" />
         </span>
         <h1 id="hero-title" class="hero__title">
           Asociația de Terapii Integrative<br>
@@ -249,7 +257,7 @@
           <figure class="gallery__frame">
             <picture>
               <source type="image/webp" data-slot="webp-srcset" srcset="images/SARBATORI-IMPREUNA-1280.webp 1280w, images/SARBATORI-IMPREUNA-640.webp 640w" sizes="(min-width: 900px) 900px, 100vw" />
-              <img class="gallery__img" data-slot="image" src="SARBATORI-IMPREUNA.png" alt="Sărbători împreună" loading="lazy" decoding="async" />
+              <img class="gallery__img" data-slot="image" src="SARBATORI-IMPREUNA.png" alt="Sărbători împreună" width="990" height="742" loading="lazy" decoding="async" />
             </picture>
             <figcaption class="gallery__caption" data-slot="title">Sărbători împreună</figcaption>
           </figure>
@@ -391,7 +399,7 @@
       <button class="lightbox__close" type="submit" value="close" aria-label="Închide imaginea">×</button>
     </form>
     <figure class="lightbox__figure">
-      <img class="lightbox__img" src="" alt="" />
+      <img class="lightbox__img" src="" alt="" width="990" height="742" />
       <figcaption class="lightbox__caption"></figcaption>
     </figure>
   </dialog>

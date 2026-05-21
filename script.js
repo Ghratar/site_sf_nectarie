@@ -40,25 +40,25 @@
   const GALLERY = [
     {
       title: "Sărbători împreună",
-      src: "SARBATORI-IMPREUNA.png",
+      src: "images/SARBATORI-IMPREUNA-1280.jpg",
       webp: "images/SARBATORI-IMPREUNA-1280.webp 1280w, images/SARBATORI-IMPREUNA-640.webp 640w",
       alt: "Membrii asociației la o sărbătoare comună"
     },
     {
       title: "Pelerinaj",
-      src: "PELERINAJ.png",
+      src: "images/PELERINAJ-1280.jpg",
       webp: "images/PELERINAJ-1280.webp 1280w, images/PELERINAJ-640.webp 640w",
       alt: "Pelerinaj organizat de asociație"
     },
     {
       title: "Grup de suport",
-      src: "GRUP-DE-SUPORT.png",
+      src: "images/GRUP-DE-SUPORT-1280.jpg",
       webp: "images/GRUP-DE-SUPORT-1280.webp 1280w, images/GRUP-DE-SUPORT-640.webp 640w",
       alt: "Întâlnire a grupului de suport"
     },
     {
       title: "Colaborări",
-      src: "COLABORARI.jpeg",
+      src: "images/COLABORARI-1280.jpg",
       webp: "images/COLABORARI-1280.webp 1280w, images/COLABORARI-640.webp 640w",
       alt: "Activități în colaborare cu parteneri"
     }
