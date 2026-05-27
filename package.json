@@ -4,9 +4,10 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "build": "node tools/minify.mjs",
-    "images": "node tools/optimize-images.mjs",
-    "serve": "node tools/serve.mjs"
+    "build":   "node tools/minify.mjs",
+    "images":  "node tools/optimize-images.mjs",
+    "favicon": "node tools/favicon.mjs",
+    "serve":   "node tools/serve.mjs"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   "homepage": "https://github.com/Ghratar/site_sf_nectarie#readme",
   "devDependencies": {
     "clean-css": "^5.3.3",
+    "png-to-ico": "^3.0.1",
     "puppeteer": "^25.0.4",
     "sharp": "^0.34.5",
     "terser": "^5.47.1"
