@@ -1,5 +1,5 @@
 /* =============================================================
-   atiaria.org — client script
+   atiaria.org - client script
    Init blocks:
      - initData             (single source of truth for content)
      - initSmoothScroll
@@ -20,7 +20,7 @@
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* -----------------------------------------------------------
-     DATA — single source of truth
+     DATA - single source of truth
      ----------------------------------------------------------- */
   const TEAM = [
     { name: "Dr. Silvia Mihaela Ilie", role: "Medic Oncolog · Fondator" },
@@ -66,7 +66,7 @@
 
 
   /* -----------------------------------------------------------
-     SMOOTH SCROLL — custom eased animator (~900ms, ease-in-out
+     SMOOTH SCROLL - custom eased animator (~900ms, ease-in-out
      cubic) so the click feels deliberate, not teleported.
      ----------------------------------------------------------- */
 
@@ -103,8 +103,8 @@
   // clicks a nav link while at the top of the page, we're in the
   // full state but after the scroll completes we'll be in the
   // scrolled state. If we use the live (full) bottom for the
-  // offset, the section lands too LOW — beneath the now-smaller
-  // header — and a strip of the previous section peeks through.
+  // offset, the section lands too LOW - beneath the now-smaller
+  // header - and a strip of the previous section peeks through.
   //
   // So: temporarily add .is-scrolled before measuring, then revert.
   // No paint happens between the two reads, so the user never sees
@@ -151,7 +151,7 @@
         const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
         smoothScrollTo(y, 900);
 
-        // Keep the URL bar clean — don't append #anchor to the address.
+        // Keep the URL bar clean - don't append #anchor to the address.
         // If the user loaded a deep link like atiaria.org/#galerie the
         // browser handles the initial scroll, and we strip the hash so
         // subsequent navigation keeps the URL at its base form.
@@ -237,7 +237,7 @@
 
 
   /* -----------------------------------------------------------
-     NAV ON SCROLL — adds .is-scrolled
+     NAV ON SCROLL - adds .is-scrolled
      ----------------------------------------------------------- */
   function initNavOnScroll() {
     const header = document.getElementById("site-header");
@@ -252,7 +252,7 @@
 
 
   /* -----------------------------------------------------------
-     STAGGER — tag children inside .reveal sections so they
+     STAGGER - tag children inside .reveal sections so they
      animate in sequence when the section becomes visible.
      Run BEFORE initReveal so CSS picks up --stagger-i on first
      paint and there's no flash of un-staggered content.
@@ -279,7 +279,7 @@
 
 
   /* -----------------------------------------------------------
-     REVEAL — IntersectionObserver
+     REVEAL - IntersectionObserver
      ----------------------------------------------------------- */
   function initReveal() {
     const els = document.querySelectorAll(".reveal");
@@ -304,7 +304,7 @@
 
 
   /* -----------------------------------------------------------
-     NAV SPY — highlight the section currently in view
+     NAV SPY - highlight the section currently in view
      ----------------------------------------------------------- */
   function initNavSpy() {
     const sections = document.querySelectorAll("main section[id]");
@@ -482,7 +482,7 @@
 
 
   /* -----------------------------------------------------------
-     LIGHTBOX — modern photo viewer
+     LIGHTBOX - modern photo viewer
      - Click any gallery tile to open at that image
      - Prev / Next buttons inside, arrow keys, Escape closes
      - Counter (1 / 4), caption with alt text
@@ -632,7 +632,7 @@
     const btn = document.getElementById("back-to-top");
     if (!btn) return;
     btn.addEventListener("click", () => {
-      // Slightly longer than nav scrolls — top-of-page is usually farther
+      // Slightly longer than nav scrolls - top-of-page is usually farther
       smoothScrollTo(0, 1100);
     });
   }
@@ -697,7 +697,7 @@
     initSmoothScroll();
     initScrollProgress();
     initNavOnScroll();
-    initStagger();      // tag children — must run before initReveal
+    initStagger();      // tag children - must run before initReveal
     initReveal();
     initNavSpy();
     initCarousels();

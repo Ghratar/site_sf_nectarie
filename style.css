@@ -1,5 +1,5 @@
 /* =============================================================
-   atiaria.org — stylesheet
+   atiaria.org - stylesheet
    1. Tokens
    2. Reset + base
    3. Typography
@@ -41,7 +41,7 @@
    1. TOKENS
    ============================================================ */
 :root {
-  /* Color — base */
+  /* Color - base */
   --color-bg:           #f4f3ec;
   --color-surface:      #ffffff;
   --color-surface-2:    #fbfaf4;
@@ -49,20 +49,20 @@
   --color-ink-muted:    #5a5a52;
   --color-rule:         rgba(69, 79, 45, 0.18);
 
-  /* Color — brand */
+  /* Color - brand */
   --color-primary:      #454F2D;   /* forest */
   --color-primary-700:  #394032;
   --color-primary-300:  #797F3E;
-  --color-accent:       #8A6A3A;   /* gold — darkened from #9F7E4A so
+  --color-accent:       #8A6A3A;   /* gold - darkened from #9F7E4A so
                                        white text on top hits WCAG AA
                                        contrast (5.0:1 vs old 3.78:1) */
   --color-accent-700:   #6E552D;
 
-  /* Color — status */
+  /* Color - status */
   --color-success:      #2f6a37;
   --color-error:        #8a1f1f;
 
-  /* Color — system surfaces */
+  /* Color - system surfaces */
   --color-footer-bg:    #2b2f24;
   --color-footer-bg-2:  #394032;
   --color-footer-ink:   #e4e1d6;
@@ -85,7 +85,7 @@
   --leading-snug:  1.35;
   --leading-body:  1.65;
 
-  /* Space — 4px scale */
+  /* Space - 4px scale */
   --space-1:  0.25rem;
   --space-2:  0.5rem;
   --space-3:  0.75rem;
@@ -236,7 +236,7 @@ p strong { color: var(--color-primary); font-weight: 700; }
 
 /* The first section after the hero overlaps UP into the hero by
    140px with a soft mask-fade on its top edge. This eliminates the
-   hero/section boundary line entirely — the section's solid cream
+   hero/section boundary line entirely - the section's solid cream
    bleeds gradually over the hero's bottom, so the two visually
    merge instead of meeting on a hard line. */
 #despre-noi {
@@ -324,7 +324,7 @@ p strong { color: var(--color-primary); font-weight: 700; }
 }
 
 /* On phones the OS already shows a scroll indicator and our gold
-   bar competes with the floating header pill at the top edge —
+   bar competes with the floating header pill at the top edge -
    hide it to reduce visual noise. */
 @media (max-width: 899.98px) {
   #scroll-progress { display: none; }
@@ -350,7 +350,7 @@ p strong { color: var(--color-primary); font-weight: 700; }
   gap: var(--space-2);
 }
 
-/* Hamburger button — hidden on desktop, shown on mobile ------- */
+/* Hamburger button - hidden on desktop, shown on mobile ------- */
 .nav-toggle {
   display: none;
   width: 44px;
@@ -802,7 +802,7 @@ body.nav-open { overflow: hidden; touch-action: none; }
 .form__actions { display: flex; justify-content: flex-end; }
 
 /* Lightbox ---------------------------------------------------- */
-/* LIGHTBOX — modern photo-viewer style:
+/* LIGHTBOX - modern photo-viewer style:
    - Dark backdrop with blur
    - Counter top-left, Close top-right (both with hairline border)
    - Image centered, contain to viewport minus chrome
@@ -1080,8 +1080,8 @@ body.nav-open { overflow: hidden; touch-action: none; }
 }
 .hero__cta { margin-top: var(--space-3); }
 
-/* Hero entrance — staggered intro on first paint.
-   NOTE: the hero <h1> is intentionally NOT animated — it's the LCP
+/* Hero entrance - staggered intro on first paint.
+   NOTE: the hero <h1> is intentionally NOT animated - it's the LCP
    element, and animating its opacity from 0 forces Lighthouse to
    wait until the animation completes before counting LCP. That
    was costing us ~1.4s of LCP delay. The other hero elements still
@@ -1099,7 +1099,7 @@ body.nav-open { overflow: hidden; touch-action: none; }
 .hero__tagline   { animation-delay: 0.50s; }
 .hero__cta       { animation-delay: 0.72s; }
 
-/* Dove — gentle, continuous hover after the rise settles ---- */
+/* Dove - gentle, continuous hover after the rise settles ---- */
 @keyframes dove-float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
   50%      { transform: translateY(-12px) rotate(-1.2deg); }
@@ -1109,7 +1109,7 @@ body.nav-open { overflow: hidden; touch-action: none; }
   will-change: transform;
 }
 
-/* Short-viewport adjustments — mobile landscape, ultra-wide TVs.
+/* Short-viewport adjustments - mobile landscape, ultra-wide TVs.
    At <= 500px tall the default padding makes the hero overflow
    100svh and pushes the CTA below the fold. Shrink content. */
 @media (max-height: 500px) {
@@ -1204,7 +1204,7 @@ body.nav-open { overflow: hidden; touch-action: none; }
 }
 
 /* Gallery ----------------------------------------------------- */
-/* GALLERY GRID — clickable tiles, opens lightbox -------------- */
+/* GALLERY GRID - clickable tiles, opens lightbox -------------- */
 .gallery-grid {
   list-style: none;
   padding: 0;
@@ -1440,10 +1440,10 @@ body.nav-open { overflow: hidden; touch-action: none; }
 
 
 /* ============================================================
-   8. REDUCED MOTION  (surgical — kill *large* motion only)
+   8. REDUCED MOTION  (surgical - kill *large* motion only)
 
    Per WCAG: prefers-reduced-motion should suppress motion that
-   could trigger vestibular reactions — parallax linked to scroll,
+   could trigger vestibular reactions - parallax linked to scroll,
    autoplay carousels, large continuous loops. Hover feedback,
    button states, one-time entrances and subtle floats stay,
    because they're below the vestibular threshold AND they're
@@ -1456,7 +1456,7 @@ body.nav-open { overflow: hidden; touch-action: none; }
     .hero__bg img { animation: none !important; }
   }
 
-  /* KILL: section reveal slide — but keep the section visible.
+  /* KILL: section reveal slide - but keep the section visible.
      No !important on transform so .card:hover still works.       */
   .stagger-child {
     opacity: 1;
@@ -1465,7 +1465,7 @@ body.nav-open { overflow: hidden; touch-action: none; }
   }
   .section__title::after { width: 56px; transition: none; }
 
-  /* TONE DOWN: dove float — half the distance, half the period */
+  /* TONE DOWN: dove float - half the distance, half the period */
   @keyframes dove-float {
     0%, 100% { transform: translateY(0); }
     50%      { transform: translateY(-4px); }
