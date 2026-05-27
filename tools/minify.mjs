@@ -49,7 +49,16 @@ async function minJS() {
   return hash;
 }
 
-async function inlineCSSInto(htmlFile, css, jsHash) {
+async function hashFile(file) {
+  try {
+    const buf = await readFile(join(ROOT, file));
+    return createHash("sha1").update(buf).digest("hex").slice(0, 8);
+  } catch {
+    return null;  // file might not exist yet
+  }
+}
+
+async function inlineCSSInto(htmlFile, css, jsHash, faviconHashes) {
   const path = join(ROOT, htmlFile);
   let html = await readFile(path, "utf8");
 
@@ -72,6 +81,18 @@ async function inlineCSSInto(htmlFile, css, jsHash) {
     `src="script.min.js?v=${jsHash}"`
   );
 
+  // 3. Cache-bust each favicon-family asset so a redesigned icon
+  //    propagates to returning visitors without a multi-hour cache
+  //    expiry. The auto-fetched /favicon.ico can't be query-string
+  //    busted, but PNG <link>s take precedence in modern browsers,
+  //    so the tab updates immediately once HTML parses.
+  for (const [file, hash] of Object.entries(faviconHashes)) {
+    if (!hash) continue;
+    const esc = file.replace(/\./g, "\\.").replace(/-/g, "\\-");
+    const re = new RegExp(`href="${esc}(?:\\?v=[^"]*)?"`, "g");
+    html = html.replace(re, `href="${file}?v=${hash}"`);
+  }
+
   await writeFile(path, html, "utf8");
   console.log(`  inlined CSS + cache-bust into ${htmlFile}`);
 }
@@ -79,5 +100,12 @@ async function inlineCSSInto(htmlFile, css, jsHash) {
 console.log("Building atiaria.org");
 const css = await minCSS();
 const jsHash = await minJS();
-for (const f of HTML_FILES) await inlineCSSInto(f, css, jsHash);
+const faviconHashes = {
+  "favicon.ico":          await hashFile("favicon.ico"),
+  "favicon-32.png":       await hashFile("favicon-32.png"),
+  "favicon-192.png":      await hashFile("favicon-192.png"),
+  "apple-touch-icon.png": await hashFile("apple-touch-icon.png"),
+  "site.webmanifest":     await hashFile("site.webmanifest")
+};
+for (const f of HTML_FILES) await inlineCSSInto(f, css, jsHash, faviconHashes);
 console.log("Done.");
