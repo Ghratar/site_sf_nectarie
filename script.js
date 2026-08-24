@@ -260,6 +260,7 @@
   function initStagger() {
     const SELECTOR = [
       ".section__intro",
+      ".opinie__grid > .card",
       ".about__grid > .card",
       ".about__grid > .card .people-block",
       ".activity__grid > .card",

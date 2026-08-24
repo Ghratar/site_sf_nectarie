@@ -239,7 +239,7 @@ p strong { color: var(--color-primary); font-weight: 700; }
    hero/section boundary line entirely - the section's solid cream
    bleeds gradually over the hero's bottom, so the two visually
    merge instead of meeting on a hard line. */
-#despre-noi {
+#a-doua-opinie {
   position: relative;
   z-index: 2;
   background-color: var(--color-bg);
@@ -482,6 +482,8 @@ p strong { color: var(--color-primary); font-weight: 700; }
   .site-nav.is-open li:nth-child(4) { transition-delay: 0.26s; }
   .site-nav.is-open li:nth-child(5) { transition-delay: 0.32s; }
   .site-nav.is-open li:nth-child(6) { transition-delay: 0.38s; }
+  .site-nav.is-open li:nth-child(7) { transition-delay: 0.44s; }
+  .site-nav.is-open li:nth-child(8) { transition-delay: 0.50s; }
 
   .site-nav a {
     font-size: 1.25rem;
@@ -549,6 +551,30 @@ body.nav-open { overflow: hidden; touch-action: none; }
 .site-nav a:hover::after,
 .site-nav a:focus-visible::after,
 .site-nav a[aria-current="true"]::after { transform: scaleX(1); }
+
+/* Social icons in the menu (markup commented out in HTML until
+   the Facebook/Instagram pages are created). */
+.site-nav__social {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+.site-nav__social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+}
+.site-nav__social a::after { display: none; }
+.site-nav__social a:hover { color: var(--color-focus); }
+.site-nav__social svg { width: 18px; height: 18px; }
+@media (max-width: 899.98px) {
+  .site-nav__social { margin-top: var(--space-4); }
+  .site-nav__social svg { width: 26px; height: 26px; }
+}
 
 /* Button ------------------------------------------------------ */
 .btn {
@@ -799,7 +825,12 @@ body.nav-open { overflow: hidden; touch-action: none; }
 .form__status.is-success { color: var(--color-success); }
 .form__status.is-error   { color: var(--color-error); }
 
-.form__actions { display: flex; justify-content: flex-end; }
+.form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: flex-end;
+}
 
 /* Lightbox ---------------------------------------------------- */
 /* LIGHTBOX - modern photo-viewer style:
@@ -1078,7 +1109,23 @@ body.nav-open { overflow: hidden; touch-action: none; }
   margin: 0;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
 }
-.hero__cta { margin-top: var(--space-3); }
+.hero__cta {
+  margin-top: var(--space-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}
+/* Ghost button legibility on the dark hero photo */
+.hero__cta .btn--ghost {
+  --btn-ink: #fff;
+  --btn-border: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.08);
+}
+.hero__cta .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
 
 /* Hero entrance - staggered intro on first paint.
    NOTE: the hero <h1> is intentionally NOT animated - it's the LCP
@@ -1182,6 +1229,18 @@ body.nav-open { overflow: hidden; touch-action: none; }
   .activity__grid { grid-template-columns: 1fr 1fr; }
 }
 
+/* A doua opinie ----------------------------------------------- */
+.opinie__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+.opinie__wide { grid-column: 1 / -1; }
+
+@media (min-width: 760px) {
+  .opinie__grid { grid-template-columns: 1fr 1fr; }
+}
+
 /* Involve ----------------------------------------------------- */
 .involve__grid {
   display: grid;
@@ -1198,6 +1257,33 @@ body.nav-open { overflow: hidden; touch-action: none; }
 }
 .involve-card h3 { font-size: var(--text-2xl); }
 .involve-card--wide { grid-column: 1 / -1; }
+.involve-card__badge {
+  align-self: flex-start;
+  margin: 0;
+  padding: var(--space-1) var(--space-3);
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.involve-card__badge--muted {
+  background: var(--color-surface-2);
+  color: var(--color-ink-muted);
+  border: 1px solid var(--color-rule);
+}
+.involve-card__note {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-rule);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  color: var(--color-ink-muted);
+}
 
 @media (min-width: 760px) {
   .involve__grid { grid-template-columns: 1fr 1fr; }
@@ -1438,6 +1524,29 @@ body.nav-open { overflow: hidden; touch-action: none; }
 }
 
 .site-footer__contact strong { color: #fff; font-weight: 600; }
+
+/* Social icons in the footer (markup commented out in HTML until
+   the Facebook/Instagram pages are created). */
+.social-links {
+  display: flex;
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+}
+.social-links__item {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  transition: background 0.4s var(--ease-soft), transform 0.4s var(--ease-soft);
+}
+.social-links__item:hover {
+  background: var(--color-accent);
+  transform: translateY(-2px);
+}
+.social-links__item svg { width: 20px; height: 20px; }
 
 .site-footer__divider {
   max-width: var(--container-max);
