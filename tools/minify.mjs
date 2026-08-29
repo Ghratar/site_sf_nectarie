@@ -22,7 +22,7 @@ import { minify as terserMinify } from "terser";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 
-const HTML_FILES = ["index.html", "confidentialitate.html", "termeni.html"];
+const HTML_FILES = ["index.html", "evenimente.html", "live.html", "confidentialitate.html", "termeni.html"];
 
 function kb(n) { return (n / 1024).toFixed(1) + " KB"; }
 

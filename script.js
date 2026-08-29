@@ -243,11 +243,26 @@
     const header = document.getElementById("site-header");
     if (!header) return;
 
+    // The full-size pill exists to float over the hero image. On
+    // pages without a hero (evenimente, live, legal) it would grow/
+    // shrink around the 60px scroll boundary over plain background,
+    // which reads as a glitch - keep the compact state permanently.
+    // (CSS paints these pages compact from the first frame; adding
+    // the class here just keeps measurements consistent.)
+    if (!document.querySelector(".hero")) {
+      header.classList.add("is-scrolled");
+      document.documentElement.classList.remove("landed-scrolled");
+      return;
+    }
+
     const onScroll = () => {
       header.classList.toggle("is-scrolled", window.scrollY > 60);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+    // Hand over from the first-paint CSS state (set by the inline
+    // <head> script on hash landings) to the scroll-driven class.
+    document.documentElement.classList.remove("landed-scrolled");
   }
 
 
@@ -265,6 +280,8 @@
       ".about__grid > .card .people-block",
       ".activity__grid > .card",
       ".involve__grid > .card",
+      ".events__grid > .card",
+      ".resources__grid > .card",
       ".gallery",
       ".contact__grid > .card"
     ].join(", ");

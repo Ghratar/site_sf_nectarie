@@ -212,6 +212,7 @@ p strong { color: var(--color-primary); font-weight: 700; }
   h1 { font-size: var(--text-4xl); }
   h2 { font-size: 2.25rem; }
   h3 { font-size: 1.4rem; }
+  .card > .card__title { font-size: 1.4rem; }
 }
 
 
@@ -484,6 +485,7 @@ p strong { color: var(--color-primary); font-weight: 700; }
   .site-nav.is-open li:nth-child(6) { transition-delay: 0.38s; }
   .site-nav.is-open li:nth-child(7) { transition-delay: 0.44s; }
   .site-nav.is-open li:nth-child(8) { transition-delay: 0.50s; }
+  .site-nav.is-open li:nth-child(9) { transition-delay: 0.56s; }
 
   .site-nav a {
     font-size: 1.25rem;
@@ -551,6 +553,35 @@ body.nav-open { overflow: hidden; touch-action: none; }
 .site-nav a:hover::after,
 .site-nav a:focus-visible::after,
 .site-nav a[aria-current="true"]::after { transform: scaleX(1); }
+
+/* Pages without a hero (and hash-landings on the homepage, via the
+   tiny inline script in <head>) paint the header compact from the
+   very first frame. Without this, the deferred script applies
+   .is-scrolled AFTER first paint and the whole pill visibly shrinks
+   on every page load. Values mirror .site-header.is-scrolled.
+   Desktop only: the mobile header is identical in both states. */
+@media (min-width: 900px) {
+  .subpage .site-header,
+  .legal-page .site-header,
+  html.landed-scrolled .site-header {
+    background: rgba(43, 47, 36, 0.94);
+    box-shadow: var(--shadow-lg);
+    padding: 6px var(--space-4);
+  }
+  .subpage .site-nav a,
+  .legal-page .site-nav a,
+  html.landed-scrolled .site-nav a {
+    padding: 6px var(--space-3);
+    font-size: 0.85rem;
+  }
+}
+
+/* Narrow-desktop squeeze: with 8 menu items the pill gets close
+   to the viewport edge between the mobile breakpoint and ~1080px,
+   so compress link padding/typography a little in that band. */
+@media (min-width: 900px) and (max-width: 1079.98px) {
+  .site-nav a { padding: var(--space-2) 10px; font-size: 0.85rem; }
+}
 
 /* Social icons in the menu (markup commented out in HTML until
    the Facebook/Instagram pages are created). */
@@ -657,7 +688,11 @@ body.nav-open { overflow: hidden; touch-action: none; }
   box-shadow: var(--shadow-lg);
   border-color: rgba(159, 126, 74, 0.4);
 }
-.card > h3 { margin-bottom: var(--space-2); }
+.card > h3,
+.card > .card__title { margin-bottom: var(--space-2); }
+/* Card headings promoted to h2 for document-outline reasons keep
+   the visual size of the h3 card headings. */
+.card > .card__title { font-size: var(--text-xl); }
 .card__actions {
   margin-top: auto;
   padding-top: var(--space-4);
@@ -1227,6 +1262,144 @@ body.nav-open { overflow: hidden; touch-action: none; }
 
 @media (min-width: 760px) {
   .activity__grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Subpages (evenimente etc.) - content starts below the fixed
+   header, mirroring the legal pages' inline rule. */
+.subpage main { padding-top: calc(var(--header-height) + var(--space-8)); }
+
+/* Events page ------------------------------------------------- */
+.events__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+.events__wide { grid-column: 1 / -1; }
+
+@media (min-width: 760px) {
+  .events__grid { grid-template-columns: 1fr 1fr; }
+}
+
+.event-card__date {
+  align-self: flex-start;
+  margin: 0;
+  padding: var(--space-1) var(--space-3);
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.event-card__meta {
+  margin: 0;
+  color: var(--color-ink-muted);
+  font-size: var(--text-sm);
+}
+
+/* Sala webinar - branded live-stream frame. The YouTube iframe is
+   injected only after the visitor presses play (privacy + speed). */
+.live-player {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background:
+    linear-gradient(rgba(43, 47, 36, 0.82), rgba(43, 47, 36, 0.82)),
+    url("images/forest-1280.webp") center / cover no-repeat;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.live-player iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.live-poster {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  text-align: center;
+  color: #fff;
+}
+.live-poster__note {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: var(--text-xl);
+  color: #fafaf8;
+}
+.live-poster__sub {
+  margin: 0;
+  max-width: 560px;
+  color: #ece9dd;
+  font-size: var(--text-sm);
+}
+.live-poster__play {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--color-accent);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.3s var(--ease-soft), background 0.3s var(--ease-soft);
+}
+.live-poster__play:hover {
+  transform: scale(1.08);
+  background: var(--color-accent-700);
+}
+.live-poster__play svg { margin-left: 4px; }
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.live-badge {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  background: rgba(138, 31, 31, 0.92);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+.live-badge span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  animation: live-pulse 1.6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-badge span { animation: none; }
+}
+
+.resources__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 760px) {
+  .resources__grid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 1024px) {
+  .resources__grid { grid-template-columns: 1fr 1fr 1fr; }
 }
 
 /* A doua opinie ----------------------------------------------- */
