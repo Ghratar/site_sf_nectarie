@@ -867,6 +867,28 @@ body.nav-open { overflow: hidden; touch-action: none; }
   justify-content: flex-end;
 }
 
+/* GDPR consent checkbox - overrides the generic .form input sizing */
+.form__consent {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+.form__consent input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  padding: 0;
+  margin: 3px 0 0;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+.form__consent label {
+  font-weight: 400;
+  font-size: var(--text-sm);
+  color: var(--color-ink-muted);
+  cursor: pointer;
+}
+
 /* Lightbox ---------------------------------------------------- */
 /* LIGHTBOX - modern photo-viewer style:
    - Dark backdrop with blur
