@@ -129,9 +129,15 @@
 
   <script>
     /* === CONFIGURARE TRANSMISIUNE (de schimbat înaintea fiecărui webinar) ===
-       1. Pornește transmisiunea pe canalul YouTube al asociației (vizibilitate „Nelistat”).
-       2. Copiază ID-ul videoclipului (șirul de după „v=” din linkul YouTube) în videoId.
-       3. Actualizează title și date, apoi rulează „npm run build” și publică (git push).
+       Cel mai simplu, din terminal:
+         npm run live -- https://youtu.be/XXXXXXXXXXX     (pornește)
+         npm run live -- off                              (oprește)
+       apoi: git commit -am "Live: on" && git push
+
+       Sau manual: pune în videoId linkul „Distribuie” al transmisiunii din YouTube
+       Studio (sau doar ID-ul de 11 caractere). Vizibilitate recomandată: „Nelistat”.
+       ATENȚIE: cheia de stream (zzzz-zzzz-zzzz-zzzz-zzzz) este SECRETĂ și NU se pune
+       aici - ea merge doar în programul de streaming (OBS / StreamYard).
        videoId gol = nicio transmisiune activă; pagina afișează programul. */
     window.WEBINAR_LIVE = {
       videoId: "",
@@ -141,6 +147,16 @@
 
     (function () {
       var cfg = window.WEBINAR_LIVE || {};
+      /* Acceptă și un link YouTube întreg, nu doar ID-ul. Ignoră cheile de stream. */
+      cfg.videoId = (function (raw) {
+        var s = String(raw || "").trim();
+        if (!s || /^[a-z0-9]{4}(-[a-z0-9]{4}){3,5}$/i.test(s)) return "";
+        if (/^[A-Za-z0-9_-]{11}$/.test(s)) return s;
+        var m = s.match(/[?&]v=([A-Za-z0-9_-]{11})/) ||
+                s.match(/youtu\.be\/([A-Za-z0-9_-]{11})/) ||
+                s.match(/\/(?:live|embed|shorts|video)\/([A-Za-z0-9_-]{11})/);
+        return m ? m[1] : "";
+      })(cfg.videoId);
       var player = document.getElementById("live-player");
       var titleEl = document.getElementById("live-title");
       var dateEl = document.getElementById("live-date");
