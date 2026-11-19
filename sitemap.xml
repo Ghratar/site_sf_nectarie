@@ -6,22 +6,22 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://atiaria.org/evenimente.html</loc>
+    <loc>https://atiaria.org/evenimente</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://atiaria.org/live.html</loc>
+    <loc>https://atiaria.org/live</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://atiaria.org/confidentialitate.html</loc>
+    <loc>https://atiaria.org/confidentialitate</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://atiaria.org/termeni.html</loc>
+    <loc>https://atiaria.org/termeni</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

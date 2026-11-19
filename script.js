@@ -6,11 +6,12 @@
      - initScrollProgress
      - initNavOnScroll
      - initReveal
-     - initCarousels         (factory used by team/collab/gallery)
      - initLightbox          (native <dialog>)
      - initContactForm
+     - initContactCategory   (CTA buttons preselect the form category)
+     - initMap               (Google Maps loads only on request)
+     - initTaxDeadline       (Formular 230 badge/note follow the calendar)
      - initBackToTop
-     - initCookieBanner
      - initCurrentYear
    ============================================================= */
 
@@ -22,21 +23,6 @@
   /* -----------------------------------------------------------
      DATA - single source of truth
      ----------------------------------------------------------- */
-  const TEAM = [
-    { name: "Dr. Silvia Mihaela Ilie", role: "Medic Oncolog · Fondator" },
-    { name: "Rodica Grancea",          role: "Economist · Fondator" },
-    { name: "Alis Ilie",               role: "Biolog" },
-    { name: "Octavia Voiculescu",      role: "Contabil" }
-  ];
-
-  const COLLAB = [
-    { name: "Narcisa Diana Opriș",     role: "Farmacist" },
-    { name: "Dr. Olimpia Moldoveanu",  role: "Medic Recuperare" },
-    { name: "Dr. Lucia Neagoe",        role: "Psiholog" },
-    { name: "Dragoș Marineață",        role: "Preot" },
-    { name: "Alexandru Ilie",          role: "IT" }
-  ];
-
   const GALLERY = [
     {
       title: "Sărbători împreună",
@@ -151,13 +137,10 @@
         const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
         smoothScrollTo(y, 900);
 
-        // Keep the URL bar clean - don't append #anchor to the address.
-        // If the user loaded a deep link like atiaria.org/#galerie the
-        // browser handles the initial scroll, and we strip the hash so
-        // subsequent navigation keeps the URL at its base form.
-        if (location.hash) {
-          history.replaceState(null, "", location.pathname + location.search);
-        }
+        // Keep the section in the address bar so the link can be copied,
+        // shared or bookmarked. replaceState (not pushState) so menu
+        // clicks don't pile up behind the Back button.
+        history.replaceState(null, "", id === "home" ? location.pathname + location.search : "#" + id);
 
         // Move focus to the target for screen reader users
         target.setAttribute("tabindex", "-1");
@@ -360,146 +343,6 @@
 
 
   /* -----------------------------------------------------------
-     CAROUSEL FACTORY
-     ----------------------------------------------------------- */
-  function createCarousel(root, items, opts) {
-    if (!root || !items || !items.length) return;
-
-    const config = Object.assign({
-      autoplayMs: 6000,
-      onRender: null,
-      dotsContainer: null,
-      labelFor: (i) => `Slide ${i + 1}`
-    }, opts || {});
-
-    const viewport  = root.querySelector(".carousel__viewport");
-    const slide     = root.querySelector(".carousel__slide");
-    const prevBtn   = root.querySelector(".carousel__btn--prev");
-    const nextBtn   = root.querySelector(".carousel__btn--next");
-    let index = 0;
-    let timer = null;
-
-    // Build dots
-    const dots = [];
-    if (config.dotsContainer) {
-      items.forEach((_, i) => {
-        const dot = document.createElement("button");
-        dot.type = "button";
-        dot.className = "carousel__dot";
-        dot.setAttribute("role", "tab");
-        dot.setAttribute("aria-label", config.labelFor(i));
-        dot.addEventListener("click", () => go(i));
-        config.dotsContainer.appendChild(dot);
-        dots.push(dot);
-      });
-    }
-
-    function render() {
-      const item = items[index];
-
-      const apply = () => {
-        if (config.onRender) {
-          config.onRender(slide, item, index);
-        } else if (slide) {
-          slide.querySelectorAll("[data-slot]").forEach((el) => {
-            const key = el.dataset.slot;
-            if (key in item) el.textContent = item[key];
-          });
-        }
-      };
-
-      const isGallery = root.classList.contains("gallery");
-
-      if (prefersReducedMotion) {
-        apply();
-      } else {
-        if (slide) slide.classList.add("is-leaving");
-        if (isGallery) {
-          root.querySelectorAll(".gallery__img, .gallery__caption").forEach((n) => n.classList.add("is-leaving"));
-        }
-        window.setTimeout(() => {
-          apply();
-          if (slide) slide.classList.remove("is-leaving");
-          if (isGallery) {
-            root.querySelectorAll(".gallery__img, .gallery__caption").forEach((n) => n.classList.remove("is-leaving"));
-          }
-        }, 280);
-      }
-
-      dots.forEach((d, i) => d.setAttribute("aria-selected", i === index ? "true" : "false"));
-    }
-
-    function go(i, userInitiated) {
-      index = ((i % items.length) + items.length) % items.length;
-      render();
-      if (userInitiated) restart();
-    }
-    function next() { go(index + 1); }
-    function prev() { go(index - 1); }
-
-    function start() {
-      if (prefersReducedMotion) return;
-      stop();
-      timer = window.setInterval(next, config.autoplayMs);
-    }
-    function stop() { if (timer) { window.clearInterval(timer); timer = null; } }
-    function restart() { stop(); start(); }
-
-    if (prevBtn) prevBtn.addEventListener("click", () => go(index - 1, true));
-    if (nextBtn) nextBtn.addEventListener("click", () => go(index + 1, true));
-
-    // Pause on hover / focus
-    root.addEventListener("mouseenter", stop);
-    root.addEventListener("mouseleave", start);
-    root.addEventListener("focusin", stop);
-    root.addEventListener("focusout", start);
-
-    // Pause when tab is hidden
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) stop(); else start();
-    });
-
-    // Keyboard arrows when carousel has focus
-    root.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft")  { e.preventDefault(); go(index - 1, true); }
-      if (e.key === "ArrowRight") { e.preventDefault(); go(index + 1, true); }
-    });
-
-    render();
-    start();
-
-    return { go, next, prev, start, stop };
-  }
-
-
-  /* -----------------------------------------------------------
-     INIT CAROUSELS
-     ----------------------------------------------------------- */
-  function initCarousels() {
-    const teamRoot = document.querySelector('[data-carousel="team"]');
-    const teamDots = document.querySelector('[data-dots="team"]');
-    if (teamRoot) {
-      createCarousel(teamRoot, TEAM, {
-        dotsContainer: teamDots,
-        labelFor: (i) => `Membru ${i + 1}: ${TEAM[i].name}`
-      });
-    }
-
-    const collabRoot = document.querySelector('[data-carousel="collab"]');
-    const collabDots = document.querySelector('[data-dots="collab"]');
-    if (collabRoot) {
-      createCarousel(collabRoot, COLLAB, {
-        dotsContainer: collabDots,
-        labelFor: (i) => `Colaborator ${i + 1}: ${COLLAB[i].name}`
-      });
-    }
-
-    // Gallery is now a tile grid + lightbox (see initLightbox);
-    // no carousel for gallery anymore.
-  }
-
-
-  /* -----------------------------------------------------------
      LIGHTBOX - modern photo viewer
      - Click any gallery tile to open at that image
      - Prev / Next buttons inside, arrow keys, Escape closes
@@ -657,44 +500,85 @@
 
 
   /* -----------------------------------------------------------
-     COOKIE BANNER
+     CONTACT CATEGORY - buttons that lead to the contact form can
+     carry data-category="..." so the visitor lands on a form that
+     already knows what they came for.
      ----------------------------------------------------------- */
-  function initCookieBanner() {
-    const banner = document.getElementById("cookie-banner");
-    if (!banner) return;
-
-    const KEY = "atiaria.consent.v1";
-    let stored = null;
-    try { stored = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (_) { stored = null; }
-
-    if (stored && typeof stored.analytics === "boolean") {
-      banner.hidden = true;
-      return;
-    }
-
-    banner.hidden = false;
-    // Next frame: add .is-visible so the opacity/transform transition fires.
-    // Without the double-rAF, the browser batches the visibility change
-    // and the start state with the end state and skips the animation.
-    requestAnimationFrame(() => requestAnimationFrame(() => banner.classList.add("is-visible")));
-
-    function save(consent) {
-      try {
-        localStorage.setItem(KEY, JSON.stringify({
-          analytics: !!consent,
-          ts: Date.now()
-        }));
-      } catch (_) { /* ignore */ }
-      banner.classList.remove("is-visible");
-      // Wait for the fade-out transition to finish before hiding
-      window.setTimeout(() => { banner.hidden = true; }, 420);
-    }
-
-    banner.querySelectorAll("[data-cookie]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        save(btn.dataset.cookie === "accept");
+  function initContactCategory() {
+    const select = document.getElementById("category");
+    if (!select) return;
+    document.querySelectorAll("a[data-category]").forEach((link) => {
+      link.addEventListener("click", () => {
+        const wanted = link.dataset.category;
+        const match = [...select.options].find((o) => o.value === wanted);
+        if (match) select.value = wanted;
       });
     });
+  }
+
+
+  /* -----------------------------------------------------------
+     MAP - the Google Maps embed is only requested after the
+     visitor asks for it, so nothing is sent to Google on a
+     normal page view (same approach as the YouTube player).
+     ----------------------------------------------------------- */
+  function initMap() {
+    const box = document.querySelector("[data-map]");
+    if (!box) return;
+    const btn = box.querySelector("[data-map-load]");
+    const src = box.dataset.mapSrc;
+    if (!btn || !src) return;
+
+    btn.addEventListener("click", () => {
+      const iframe = document.createElement("iframe");
+      iframe.src = src;
+      iframe.title = box.dataset.mapTitle || "Hartă";
+      iframe.setAttribute("allowfullscreen", "");
+      iframe.setAttribute("referrerpolicy", "no-referrer-when-downgrade");
+      iframe.setAttribute("tabindex", "0");
+      box.textContent = "";
+      box.classList.add("is-loaded");
+      box.appendChild(iframe);
+      iframe.focus({ preventScroll: true });
+    });
+  }
+
+
+  /* -----------------------------------------------------------
+     TAX DEADLINE - Formularul 230 is filed until 25 May each
+     year for the previous year's income. The badge and note
+     follow the calendar so the card never shows last year's
+     dates. Without JS the HTML keeps a neutral, always-true text.
+     ----------------------------------------------------------- */
+  function initTaxDeadline() {
+    const badge = document.querySelector("[data-tax230-badge]");
+    const note  = document.querySelector("[data-tax230-note]");
+    if (!badge && !note) return;
+
+    const now = new Date();
+    const y = now.getFullYear();
+    const open = now < new Date(y, 4, 26);   // through 25 May inclusive
+
+    if (badge) {
+      badge.textContent = open ? `Până la 25 mai ${y}` : `Revine în ${y + 1}`;
+      badge.classList.toggle("involve-card__badge--muted", !open);
+    }
+    if (note) {
+      note.textContent = open
+        ? `Formularul 230 pentru veniturile realizate în ${y - 1} se depune la ANAF până la 25 mai ${y}.`
+        : `Termenul de depunere a Formularului 230 pentru veniturile din ${y - 1} a trecut (25 mai ${y}). ` +
+          `Formularul pentru veniturile realizate în ${y} se va putea depune la ANAF începând cu anul ${y + 1}, ` +
+          `până la termenul-limită de 25 mai ${y + 1}.`;
+    }
+  }
+
+
+  /* -----------------------------------------------------------
+     LEGACY CLEANUP - the cookie banner was removed (the site sets
+     no optional cookies), so drop the preference it used to store.
+     ----------------------------------------------------------- */
+  function clearLegacyConsent() {
+    try { localStorage.removeItem("atiaria.consent.v1"); } catch (_) { /* ignore */ }
   }
 
 
@@ -718,11 +602,13 @@
     initStagger();      // tag children - must run before initReveal
     initReveal();
     initNavSpy();
-    initCarousels();
     initLightbox();
     initContactForm();
+    initContactCategory();
+    initMap();
+    initTaxDeadline();
     initBackToTop();
-    initCookieBanner();
+    clearLegacyConsent();
     initCurrentYear();
   }
 

@@ -1,0 +1,22 @@
+# Antete HTTP aplicate de Cloudflare Pages la livrare.
+# (tools/serve.mjs le aplică și local, ca să poată fi testate înainte de publicare.)
+#
+# Content-Security-Policy - dacă adaugi un serviciu extern nou (statistici,
+# alt furnizor de formulare, alt player video), trebuie trecut și aici,
+# altfel browserul îl blochează:
+#   connect-src  = unde are voie pagina să trimită date (formularele -> Web3Forms)
+#   frame-src    = ce se poate încărca în iframe (harta Google, playerul YouTube)
+
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.web3forms.com; frame-src https://www.google.com https://www.youtube-nocookie.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; frame-ancestors 'none'
+
+# Fonturile nu se schimbă niciodată sub același nume.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Imaginile optimizate păstrează numele la regenerare, deci doar o săptămână.
+/images/*
+  Cache-Control: public, max-age=604800

@@ -4,7 +4,7 @@
    2. Reset + base
    3. Typography
    4. Layout primitives
-   5. Components (btn, card, nav, carousel, form, lightbox, cookie)
+   5. Components (btn, card, nav, people list, form, lightbox)
    6. Sections (hero, about, activity, involve, gallery, contact, footer)
    7. Utilities
    8. Reduced motion
@@ -705,113 +705,44 @@ body.nav-open { overflow: hidden; touch-action: none; }
   .card { padding: var(--space-7); }
 }
 
-/* Carousel ---------------------------------------------------- */
-.carousel {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: var(--space-3);
+/* People list (team / collaborators) --------------------------- */
+.people-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   width: 100%;
-  max-width: 520px;
-  margin-inline: auto;
-}
-.carousel__viewport {
-  min-height: 96px;
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: var(--space-3);
+}
+.person {
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-3) var(--space-4);
   text-align: center;
-  padding: var(--space-4);
   background: var(--color-surface-2);
-  border-radius: var(--radius-md);
   border: 1px solid var(--color-rule);
+  border-radius: var(--radius-md);
 }
-.carousel__slide {
-  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
-  opacity: 1;
-  transform: translateX(0);
-}
-.carousel__slide.is-leaving {
-  opacity: 0;
-  transform: translateX(-14px);
-}
-
-.carousel__name {
+.person__name {
   font-family: var(--font-serif);
-  font-size: var(--text-lg);
+  font-size: var(--text-base);
   font-weight: 700;
   color: var(--color-primary);
   margin: 0 0 var(--space-1);
   line-height: var(--leading-snug);
 }
-.carousel__role {
+.person__role {
   margin: 0;
   color: var(--color-ink-muted);
   font-size: var(--text-sm);
 }
-
-.carousel__btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid var(--color-rule);
-  background: var(--color-surface);
-  color: var(--color-primary);
-  font-size: 1.2rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-xs);
-  transition: background 0.4s var(--ease-soft),
-              color 0.4s var(--ease-soft),
-              transform 0.4s var(--ease-soft),
-              box-shadow 0.4s var(--ease-soft);
+@media (min-width: 520px) {
+  .person { flex: 0 1 200px; min-height: 84px; }
 }
-.carousel__btn:hover {
-  background: var(--color-primary);
-  color: #fff;
-  transform: scale(1.08);
-  box-shadow: var(--shadow-sm);
-}
-
-.carousel__dots {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: center;
-  gap: var(--space-2);
-  margin-top: var(--space-3);
-}
-/* 28x28px hit target with an 8px visual dot inside.
-   Meets WCAG 2.2 target-size (>=24x24) while preserving the look. */
-.carousel__dot {
-  width: 28px;
-  height: 28px;
-  background: transparent;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
-.carousel__dot::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--color-rule);
-  transition: background 0.45s var(--ease-soft),
-              transform 0.45s var(--ease-soft);
-}
-.carousel__dot:hover::before { background: var(--color-primary-300); transform: scale(1.15); }
-.carousel__dot[aria-selected="true"]::before {
-  background: var(--color-accent);
-  transform: scale(1.4);
-}
-/* Compact the row a bit so 28px hit areas don't visually balloon */
-.carousel__dots { gap: var(--space-1); }
 
 /* Form -------------------------------------------------------- */
 .form {
@@ -1054,38 +985,7 @@ body.nav-open { overflow: hidden; touch-action: none; }
   .lightbox__caption { font-size: var(--text-sm); }
 }
 
-/* Cookie banner ----------------------------------------------- */
-.cookie-banner {
-  position: fixed;
-  inset: auto var(--space-4) var(--space-4) var(--space-4);
-  z-index: 1500;
-  background: var(--color-surface);
-  border: 1px solid var(--color-rule);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  padding: var(--space-5);
-  max-width: 520px;
-  margin-left: auto;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.4s var(--ease-soft), transform 0.4s var(--ease-soft);
-  pointer-events: none;
-}
-.cookie-banner.is-visible {
-  opacity: 1;
-  transform: none;
-  pointer-events: auto;
-}
-.cookie-banner[hidden] { display: none; }
-.cookie-banner__title { font-size: var(--text-lg); margin: 0 0 var(--space-2); }
-.cookie-banner__desc { font-size: var(--text-sm); color: var(--color-ink-muted); margin: 0 0 var(--space-4); }
-.cookie-banner__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  align-items: center;
-}
-.cookie-banner__link { font-size: var(--text-sm); margin-left: auto; }
+
 
 
 /* ============================================================
@@ -1269,8 +1169,6 @@ body.nav-open { overflow: hidden; touch-action: none; }
   }
   .card--people {
     grid-column: 1 / -1;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-10);
   }
 }
 
@@ -1621,13 +1519,42 @@ body.nav-open { overflow: hidden; touch-action: none; }
   gap: var(--space-5);
 }
 .contact__card { min-height: 100%; }
+/* The map starts as a placeholder; the Google Maps iframe is added
+   only after the visitor asks for it (see initMap in script.js). */
 .contact__map {
   width: 100%;
   height: 320px;
-  border: 0;
-  border-radius: var(--radius-md);
   margin-top: var(--space-3);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  text-align: center;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
+.contact__map.is-loaded {
+  display: block;
+  padding: 0;
+  border: 0;
+}
+.contact__map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.contact__map-note {
+  margin: 0;
+  max-width: 34ch;
+  color: var(--color-ink-muted);
+  font-size: var(--text-sm);
+}
+.contact__map-link { font-size: var(--text-sm); }
 .contact__intro { color: var(--color-ink-muted); }
 
 @media (min-width: 760px) {
